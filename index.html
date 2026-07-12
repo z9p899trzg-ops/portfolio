@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GERRIT LEHE — Graphic Designer, Tallinn</title>
 <meta name="description" content="Graphic designer & content systems. Posters, social systems, matchday graphics. Tallinn, Estonia.">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&family=Baloo+2:wght@600;800&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#111110; --ink2:#1C1C1A; --paper:#EDE8DF; --paper2:#E2DACB;
@@ -102,58 +102,49 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 .rr .badge2{position:absolute;top:5%;right:5%;color:var(--cream);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em}
 .rr .lvl{position:absolute;bottom:5%;left:5%;right:5%;display:flex;justify-content:space-between;color:var(--cream);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em}
 
-/* TERAS KK — fictional club, ink + volt only. no real club identity, no real quotes, no real scores. */
+/* TERAS KK v2 — warm card system: bubble wordmark (Baloo 2) + glass stat cards. inspo: LOUD card, Sunday Athletics, Strava club card. still ink/paper/cream/volt only, no new hues. */
 .tk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2vw}
-.tk{padding:8%;display:flex;flex-direction:column;position:relative}
+.tk{padding:8%;display:flex;flex-direction:column;position:relative;border-radius:26px}
 .tk .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase}
 .tk .foot{padding-top:5%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase}
-/* tk1 chant */
-.tk1{background:var(--ink);color:var(--volt)}
-.tk1 .top{color:rgba(47,91,255,.85)}
-.tk1 .chant{margin:auto 0;font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:.88;font-size:clamp(38px,4.4vw,60px)}
-.tk1 .chant .q{display:block;color:transparent;-webkit-text-stroke:2px var(--volt)}
-.tk1 .chant .a{display:block;color:var(--volt);transform:rotate(-2deg);margin-top:3%}
-.tk1 .foot{border-top:1px solid rgba(47,91,255,.4);color:rgba(47,91,255,.85)}
-/* tk2 matchday final */
-.tk2{background:var(--volt);color:var(--ink);overflow:hidden}
-.tk2::before{content:"";position:absolute;top:-12%;right:-22%;width:60%;height:34%;background:var(--ink);transform:rotate(-14deg)}
-.tk2 .top{color:var(--ink);position:relative}
-.tk2 h5{margin:auto 0;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(40px,4.6vw,68px);line-height:.85}
-.tk2 h5 small{display:block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;font-size:.34em;margin-top:6%}
-.tk2 .vsrow{display:flex;flex-direction:column;gap:7px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;border-top:2px solid var(--ink);padding-top:5%}
-.tk2 .vsrow .vsmid{align-self:flex-start;background:var(--ink);color:var(--volt);font-family:'Archivo Black',sans-serif;font-size:12px;padding:2px 10px;letter-spacing:.1em}
-.tk2 .foot{color:var(--ink)}
-/* tk3 quarters */
-.tk3{background:var(--ink2);color:var(--paper)}
-.tk3 .top{color:rgba(237,232,223,.75)}
-.tk3 .big{margin:6% 0 auto;font-family:'Archivo Black',sans-serif;font-size:clamp(48px,5.2vw,80px);line-height:.9;color:var(--volt);white-space:nowrap}
-.tk3 .big small{display:block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.24em;color:rgba(237,232,223,.7);margin-top:4%}
-.tk3 .qrows{display:flex;flex-direction:column;margin-top:6%}
-.tk3 .qrows div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(237,232,223,.2);font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase}
-.tk3 .qrows b{color:var(--volt)}
-/* tk4 player */
-.tk4{background:var(--ink);color:var(--paper)}
-.tk4 .top{color:rgba(237,232,223,.75)}
-.tk4 .no{margin:auto 0;font-family:'Archivo Black',sans-serif;font-size:clamp(110px,13vw,180px);line-height:.8;position:relative}
-.tk4 .no .ghost{color:transparent;-webkit-text-stroke:2px var(--paper)}
-.tk4 .no .fill{position:absolute;left:6px;top:6px;color:var(--volt);z-index:-0}
-.tk4 .nm{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(14px,1.5vw,19px);margin:6% 0 4%}
-.tk4 .nm em{color:var(--volt);font-style:normal}
-.tk4 .foot{border-top:1px solid rgba(237,232,223,.3);color:rgba(237,232,223,.75)}
-/* tk5 quote */
-.tk5{background:var(--volt);color:var(--ink)}
-.tk5 .qm{font-family:'Archivo Black',sans-serif;font-size:clamp(70px,8vw,110px);line-height:.6;margin-top:4%}
-.tk5 .q{margin:auto 0;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(20px,2.3vw,30px);line-height:1.15}
-.tk5 .q em{font-style:normal;background:var(--ink);color:var(--volt);padding:0 8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.tk5 .foot{border-top:2px solid var(--ink);color:var(--ink)}
-/* tk6 season */
-.tk6{background:var(--ink2);color:var(--paper)}
-.tk6 .top{color:rgba(237,232,223,.75)}
-.tk6 h5{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(26px,2.8vw,38px);line-height:.95;margin:8% 0 6%}
-.tk6 h5 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;color:var(--volt)}
-.tk6 .rows{margin:auto 0 0;display:flex;flex-direction:column}
-.tk6 .rows div{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(237,232,223,.2);font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase}
-.tk6 .rows b{font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:.02em}
+/* shared: cream card floating on black — the LOUD move */
+.tk-card{background:var(--paper);border-radius:20px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+/* tk1 — wordmark card */
+.tk1{background:var(--ink)}
+.tk1 .top{color:rgba(237,232,223,.55)}
+.tk1 .tk-card{margin:auto 0;padding:13% 9%;display:flex;flex-direction:column;align-items:flex-start}
+.tk1 .wordmark{font-family:'Baloo 2',sans-serif;font-weight:800;text-transform:lowercase;font-size:clamp(46px,7vw,82px);color:var(--ink);line-height:.8;letter-spacing:-.01em}
+.tk1 .meta{margin-top:16%;width:100%;border-top:1px solid rgba(17,17,16,.15);padding-top:10%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(17,17,16,.55)}
+/* tk2 — Sunday Athletics poster: bubble headline over a "grass" gradient, motion streaks */
+.tk2{background:linear-gradient(168deg,#2c3a22 0%,#5c7239 32%,#a9bc72 58%,#e7e6cf 100%);justify-content:center;overflow:hidden}
+.tk2::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(100deg,rgba(237,232,223,.12) 0px,rgba(237,232,223,.12) 2px,transparent 2px,transparent 26px);filter:blur(2px);mix-blend-mode:overlay}
+.tk2 .top{justify-content:center;gap:10px;color:var(--paper)}
+.tk2 .top .dot{width:5px;height:5px;border-radius:50%;background:var(--paper);align-self:center}
+.tk2 .word{position:relative;margin:7% 0 0;text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;text-transform:uppercase;color:var(--paper);font-size:clamp(32px,4.4vw,50px);line-height:.92}
+.tk2 .tag{position:relative;margin-top:5%;text-align:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(14px,1.6vw,19px);color:rgba(237,232,223,.92)}
+/* tk3 / tk4 — Strava-style glass stat card over a photo-toned gradient */
+.tk3,.tk4{align-items:flex-end}
+.tk3{background:linear-gradient(160deg,#274b64 0%,#5c85a3 45%,#cfd8c6 100%)}
+.tk4{background:linear-gradient(160deg,#1b1b19 0%,#3c3b34 55%,#6f6c5c 100%)}
+.glass{width:100%;background:rgba(237,232,223,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(237,232,223,.5);border-radius:22px;padding:9%;box-shadow:0 14px 34px rgba(0,0,0,.3)}
+.glass .k{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,16,.55)}
+.glass h5{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(24px,3vw,36px);color:var(--ink);line-height:.98;margin:5% 0 6%}
+.glass .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;border-top:1px solid rgba(17,17,16,.15);padding-top:7%}
+.glass .stats div{display:flex;flex-direction:column;gap:3px}
+.glass .stats span:first-child{font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(17,17,16,.5)}
+.glass .stats span:last-child{font-family:'Archivo Black',sans-serif;font-size:13px;color:var(--ink)}
+/* tk5 — quote, cream card */
+.tk5{background:var(--ink)}
+.tk5 .tk-card{margin:auto 0;padding:12% 9%;width:100%}
+.tk5 .qm{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(40px,5vw,56px);color:var(--ink);line-height:.6}
+.tk5 p{margin-top:5%;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(16px,1.9vw,21px);color:var(--ink);line-height:1.25}
+.tk5 .attr{margin-top:9%;border-top:1px solid rgba(17,17,16,.15);padding-top:6%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(17,17,16,.55)}
+/* tk6 — season, cream card */
+.tk6{background:var(--ink)}
+.tk6 .tk-card{margin:auto 0;padding:11% 9%;width:100%}
+.tk6 h5{font-family:'Baloo 2',sans-serif;font-weight:800;text-transform:lowercase;font-size:clamp(22px,2.6vw,30px);color:var(--ink);margin-bottom:9%}
+.tk6 .rows div{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid rgba(17,17,16,.12);font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(17,17,16,.7)}
+.tk6 .rows b{color:var(--ink);font-family:'Archivo Black',sans-serif;font-size:11px}
 .tk6 .rows .hl{color:var(--volt)}
 
 /* CONCEPT GRID */
@@ -378,49 +369,64 @@ footer .mono{color:rgba(237,232,223,.55)}
       </div>
     </div>
     <div class="tk-grid rv" style="margin-bottom:12vh">
+      <!-- tk1 — LOUD-style wordmark card -->
       <div class="board b-grain ratio45 tk tk1">
-        <div class="top"><span>EST. 2026 — TERASE LINN</span><span>KESKVÄLJAKU HALL</span></div>
-        <div class="chant"><span class="q">KES ON</span><span class="q">TERAS?</span><span class="a">TERASEST KÕVEM!</span></div>
-        <div class="foot"><span>@TERASKORVIS</span><span>KOGU LINNA KLUBI</span></div>
+        <div class="top"><span>Teras KK — Identity</span><span>V.01</span></div>
+        <div class="tk-card">
+          <div class="wordmark">teras</div>
+          <div class="meta"><span>Terase linn</span><span>Est. 2026</span></div>
+        </div>
       </div>
+      <!-- tk2 — Sunday Athletics style poster -->
       <div class="board b-grain ratio45 tk tk2">
-        <div class="top"><span>PÕHJA LIIGA</span><span>05/2026</span></div>
-        <h5>FINAAL.<small>üks mäng, kõik või mitte midagi.</small></h5>
-        <div class="vsrow"><span>TERAS KK</span><span class="vsmid">VS</span><span>PÕHJA KOTKAD</span></div>
-        <div class="foot"><span>PILETID: UKSEL</span><span>DJ · SOOJENDUS 18:30 · TÄIS MAJA</span></div>
+        <div class="top"><span>ESTD.</span><span class="dot"></span><span>2026</span></div>
+        <div class="word">Teras<br>KK</div>
+        <div class="tag">Strength in the city</div>
       </div>
+      <!-- tk3 — Strava-style glass card, final score -->
       <div class="board b-grain ratio45 tk tk3">
-        <div class="top"><span>FINAAL — LÕPPSEIS</span><span>PÕHJA LIIGA '26</span></div>
-        <div class="big">VÕIT.<small>VIIMANE VEERAND OTSUSTAS</small></div>
-        <div class="qrows">
-          <div><span>Q1</span><b>22:19</b><span>TERAS</span></div>
-          <div><span>Q3 END</span><b>55:50</b><span>TERAS</span></div>
-          <div><span>FULL TIME</span><b>81:76</b><span>TERAS</span></div>
-          <div><span>NEXT SEASON</span><b>TITLE DEF.</b><span>—</span></div>
+        <div class="glass">
+          <div class="k">Põhja Liiga — Final</div>
+          <h5>Won it in<br>the fourth.</h5>
+          <div class="stats">
+            <div><span>Q1</span><span>22–19</span></div>
+            <div><span>Half</span><span>40–35</span></div>
+            <div><span>Final</span><span>81–76</span></div>
+            <div><span>Result</span><span>Teras</span></div>
+          </div>
         </div>
-        <div class="foot" style="border-top:1px solid rgba(237,232,223,.3)"><span>TERAS KK ©</span><span>ONE MORE</span></div>
       </div>
+      <!-- tk4 — Strava-style glass card, player of the game -->
       <div class="board b-grain ratio45 tk tk4">
-        <div class="top"><span>MÄNGU MEES</span><span>PÕHJA LIIGA</span></div>
-        <div class="no"><span class="fill">11</span><span class="ghost" style="position:relative">11</span></div>
-        <div class="nm">[MÄNGIJA NIMI] <em>— [PTS] PTS / [LAUD] LAUD</em></div>
-        <div class="foot"><span>EFF [X]</span><span>[MIN] MIN</span><span>TERAS KK ©</span></div>
-      </div>
-      <div class="board b-grain ratio45 tk tk5">
-        <div class="top"><span>PEATREENER — PÕHJA LIIGA</span><span>2026</span></div>
-        <div class="qm">"</div>
-        <div class="q">Meie linn ehitab terast, mitte klaasi. <em>Iga mäng peab seda tundma.</em></div>
-        <div class="foot"><span>— PEATREENER</span><span>TERAS KK EST. 2026</span></div>
-      </div>
-      <div class="board b-grain ratio45 tk tk6">
-        <div class="top"><span>HOOAEG '26/27</span><span>TERAS KK</span></div>
-        <h5>Built <em>to last.</em></h5>
-        <div class="rows">
-          <div><b>[KP]</b><span>VS [VASTANE]</span><span class="hl">KODUS</span></div>
-          <div><b>[KP]</b><span>@ [VASTANE]</span><span>VÕÕRSIL</span></div>
-          <div><b>[KP]</b><span>VS [VASTANE]</span><span class="hl">KODUS</span></div>
+        <div class="glass">
+          <div class="k">Player of the Game</div>
+          <h5>[Mängija nimi]</h5>
+          <div class="stats">
+            <div><span>Pts</span><span>[PTS]</span></div>
+            <div><span>Reb</span><span>[REB]</span></div>
+            <div><span>Eff</span><span>[EFF]</span></div>
+            <div><span>Min</span><span>[MIN]</span></div>
+          </div>
         </div>
-        <div class="foot" style="border-top:1px solid rgba(237,232,223,.3)"><span>SALVESTA</span><span>KESKVÄLJAKU HALL</span></div>
+      </div>
+      <!-- tk5 — quote, cream card -->
+      <div class="board b-grain ratio45 tk tk5">
+        <div class="tk-card">
+          <div class="qm">"</div>
+          <p>Meie linn ehitab terast, mitte klaasi. Iga mäng peab seda tundma.</p>
+          <div class="attr"><span>— Peatreener</span><span>Teras KK</span></div>
+        </div>
+      </div>
+      <!-- tk6 — season schedule, cream card -->
+      <div class="board b-grain ratio45 tk tk6">
+        <div class="tk-card">
+          <h5>next up</h5>
+          <div class="rows">
+            <div><b>[KP]</b><span>vs [Vastane]</span><span class="hl">Kodus</span></div>
+            <div><b>[KP]</b><span>@ [Vastane]</span><span>Võõrsil</span></div>
+            <div><b>[KP]</b><span>vs [Vastane]</span><span class="hl">Kodus</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
