@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GERRIT LEHE — Graphic Designer, Tallinn</title>
 <meta name="description" content="Graphic designer & content systems. Posters, social systems, matchday graphics. Tallinn, Estonia.">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&family=Baloo+2:wght@600;800&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&family=Baloo+2:wght@600;800&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#111110; --ink2:#1C1C1A; --paper:#EDE8DF; --paper2:#E2DACB;
@@ -225,6 +225,54 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 .press h4 .dot{color:var(--signal)}
 .press .foot{border-top:1px solid rgba(237,232,223,.25);padding-top:5%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.6)}
 
+/* BOX SCORE — sport scoreboard poster, inspo: Lakers boxscore */
+.boxscore{background:var(--ink);padding:8%;display:flex;flex-direction:column;position:relative}
+.boxscore .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.6)}
+.boxscore .score{display:flex;align-items:center;gap:5%;margin:8% 0 4%}
+.boxscore .score .n{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,9.5vw,110px);line-height:.78;color:var(--paper)}
+.boxscore .score .vs{width:36px;height:36px;flex-shrink:0;border:1.5px solid var(--signal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:8.5px;color:var(--signal)}
+.boxscore .teams{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(237,232,223,.8)}
+.boxscore .tag{align-self:flex-start;background:var(--signal);color:var(--ink);font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;margin-top:6%}
+.boxscore .foot{margin-top:auto;padding-top:6%;border-top:1px solid rgba(237,232,223,.2);display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(237,232,223,.5)}
+
+/* GRID RECAP — stat mosaic, inspo: player highlight grid */
+.gridrecap{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:2px;background:var(--ink)}
+.gridrecap .cell{display:flex;align-items:flex-end;padding:10%;position:relative}
+.gridrecap .cell.big{grid-column:span 2;grid-row:span 2;align-items:flex-start}
+.gridrecap .cell .num{font-family:'Bebas Neue',sans-serif;font-size:clamp(46px,6.6vw,78px);color:var(--paper);line-height:.8}
+.gridrecap .cell .lbl{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:.06em;text-transform:uppercase;color:rgba(237,232,223,.75)}
+.gridrecap .c1{background:var(--ink2)}
+.gridrecap .c2{background:var(--signal)}
+.gridrecap .c3{background:var(--ink)}
+.gridrecap .c4{background:var(--volt)}
+.gridrecap .c5{background:var(--ink2)}
+
+/* SAUCE — packaging label system, inspo: Sugoi sauce identity */
+.sauce{background:var(--cream);padding:9%;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--ink)}
+.sauce .top{width:100%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,16,.55)}
+.sauce .brand{margin:auto 0 0;font-family:'Baloo 2',sans-serif;font-weight:800;text-transform:lowercase;font-size:clamp(38px,5.6vw,60px);color:var(--signal);line-height:.85}
+.sauce .flavor{margin-top:4%;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(12px,1.6vw,16px);letter-spacing:.02em}
+.sauce .est{width:100%;margin-top:auto;padding-top:9%;border-top:1px solid rgba(17,17,16,.15);display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,16,.55)}
+
+/* COLLAGE — streetwear archive scrapbook, inspo: sneaker store collage */
+.collage{background:linear-gradient(155deg,#4a4a46 0%,#8f8b7c 55%,#e7e2d3 100%);padding:9%;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.collage .tag{position:absolute;background:var(--paper);color:var(--ink);font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px}
+.collage .tag.t1{top:9%;left:8%;transform:rotate(-3deg)}
+.collage .tag.t2{top:32%;right:8%;transform:rotate(2deg)}
+.collage .roman{position:absolute;top:8%;right:9%;font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:rgba(237,232,223,.9)}
+.collage .barcode{width:64px;height:16px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px);margin-bottom:6%}
+.collage h4{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(26px,3.4vw,38px);color:var(--ink);line-height:.95}
+.collage .foot{margin-top:6%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,16,.6)}
+
+/* TRADE — sponsor announcement template, inspo: team "welcome" graphic */
+.trade{background:var(--ink2);padding:9%;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative}
+.trade .sponsor{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.5)}
+.trade .photo{width:58%;aspect-ratio:3/4;background:linear-gradient(160deg,#2c2c29,#55534a);margin:7% 0;border:1px solid rgba(237,232,223,.25)}
+.trade h4{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5.2vw,54px);color:var(--volt);letter-spacing:.02em}
+.trade .nm{margin-top:3%;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(12px,1.5vw,15px);color:var(--paper)}
+.trade .route{margin-top:5%;display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(237,232,223,.7)}
+.trade .route .arrow{color:var(--signal)}
+
 /* FLEA — print nostalgia, kraft + keyline + stamp */
 .flea{background:var(--paper2);padding:8%;display:flex;flex-direction:column;color:var(--ink)}
 .flea .frame{flex:1;border:3px solid var(--signal);padding:7%;display:flex;flex-direction:column;justify-content:center;position:relative}
@@ -434,7 +482,7 @@ footer .mono{color:rgba(237,232,223,.55)}
     <details class="concepts-toggle rv">
       <summary>View the concept series — 9 rooms, one voice <span class="arrow">↓</span></summary>
       <div class="inner">
-        <div class="shead rv" style="margin-top:2vh"><h2 style="font-size:clamp(20px,2.6vw,34px)">Concept Series — every room a brand can live in</h2><span class="mono">SELF-INITIATED · 09</span></div>
+        <div class="shead rv" style="margin-top:2vh"><h2 style="font-size:clamp(20px,2.6vw,34px)">Concept Series — every room a brand can live in</h2><span class="mono">SELF-INITIATED · 14</span></div>
         <div class="grid">
 
           <div class="piece rv">
@@ -533,6 +581,65 @@ footer .mono{color:rgba(237,232,223,.55)}
             <div class="cap"><span class="t">Flyer / Print nostalgia</span><span class="mono">CONCEPT — 09</span></div>
           </div>
 
+          <div class="piece rv">
+            <div class="board b-grain ratio45 boxscore">
+              <div class="top"><span>Playoffs — Game 6</span><span>2026</span></div>
+              <div class="score">
+                <span class="n">96</span>
+                <span class="vs">VS</span>
+                <span class="n">91</span>
+              </div>
+              <div class="teams"><span>Ida BK</span><span>Lääne KK</span></div>
+              <div class="tag">End of OT</div>
+              <div class="foot"><span>Att. 3,140</span><span>Home</span></div>
+            </div>
+            <div class="cap"><span class="t">Sport / Box score</span><span class="mono">CONCEPT — 10</span></div>
+          </div>
+
+          <div class="piece rv">
+            <div class="board b-grain ratio45 gridrecap">
+              <div class="cell big c1"><div><div class="num">31</div><div class="lbl">Pts — Career High</div></div></div>
+              <div class="cell c2"><span class="lbl">Reb 9</span></div>
+              <div class="cell c3"><span class="lbl">Ast 6</span></div>
+              <div class="cell c4"><span class="lbl">3PM 4</span></div>
+              <div class="cell c5"><span class="lbl">Eff 28</span></div>
+            </div>
+            <div class="cap"><span class="t">Sport / Stat grid</span><span class="mono">CONCEPT — 11</span></div>
+          </div>
+
+          <div class="piece rv">
+            <div class="board b-grain ratio45 sauce">
+              <div class="top"><span>Small batch</span><span>No. 004</span></div>
+              <div class="brand">sting</div>
+              <div class="flavor">Chili · Garlic · Sesame</div>
+              <div class="est"><span>Net 250ml</span><span>Est. 2026</span></div>
+            </div>
+            <div class="cap"><span class="t">Packaging / Label system</span><span class="mono">CONCEPT — 12</span></div>
+          </div>
+
+          <div class="piece rv">
+            <div class="board b-grain ratio45 collage">
+              <span class="roman">VII</span>
+              <span class="tag t1">Condition: Used</span>
+              <span class="tag t2">Lot 07</span>
+              <div class="barcode"></div>
+              <h4>Archive<br>Find.</h4>
+              <div class="foot"><span>Thrift &amp; Resell</span><span>Vol. 02</span></div>
+            </div>
+            <div class="cap"><span class="t">Streetwear / Archive collage</span><span class="mono">CONCEPT — 13</span></div>
+          </div>
+
+          <div class="piece rv">
+            <div class="board b-grain ratio45 trade">
+              <span class="sponsor">Powered by — Concept</span>
+              <div class="photo"></div>
+              <h4>Welcome</h4>
+              <div class="nm">Player Name</div>
+              <div class="route"><span>Former Club</span><span class="arrow">→</span><span>New Club</span></div>
+            </div>
+            <div class="cap"><span class="t">Sport / Trade template</span><span class="mono">CONCEPT — 14</span></div>
+          </div>
+
         </div>
       </div>
     </details>
@@ -612,6 +719,9 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 document.querySelectorAll('details.concepts-toggle').forEach(d=>{
   d.addEventListener('toggle',()=>{ if(d.open){ d.querySelectorAll('.rv').forEach(el=>el.classList.add('in')); } });
 });
+// psst
+console.log('%cSTILL HERE?','font-family:monospace;font-size:20px;font-weight:bold;color:#FF3B00');
+console.log('%cyou opened devtools on a design portfolio. respect.\\nwant this built for real? gerrit@shiftlabstudio.com','font-family:monospace;font-size:12px;color:#EDE8DF');
 </script>
 </body>
 </html>
