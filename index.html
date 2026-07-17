@@ -4,336 +4,212 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GERRIT LEHE — Graphic Designer, Tallinn</title>
-<meta name="description" content="Graphic designer & content systems. Posters, social systems, matchday graphics. Tallinn, Estonia.">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&family=Baloo+2:wght@600;800&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta name="description" content="Posters, social systems, matchday graphics. Real client work, loud craft. Tallinn, Estonia.">
+<meta property="og:title" content="GERRIT LEHE — Graphic Designer">
+<meta property="og:description" content="Posters, social systems, matchday graphics. Tallinn, Estonia.">
+<meta property="og:image" content="https://gerritlehe.com/og.png">
+<meta property="og:url" content="https://gerritlehe.com">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600&family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#111110; --ink2:#1C1C1A; --paper:#EDE8DF; --paper2:#E2DACB;
-  --signal:#FF3B00; --volt:#2F5BFF;
-  --rush:#E84B1C; --cream:#F4EBD9;
-}
+:root{--ink:#111110;--ink2:#1B1B19;--paper:#EDE8DF;--paper2:#DCD3C0;--signal:#FF3B00}
 *{margin:0;padding:0;box-sizing:border-box}
 ::selection{background:var(--signal);color:var(--paper)}
 html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--paper);font-family:'Archivo',sans-serif;overflow-x:hidden;cursor:none}
 a{color:inherit;text-decoration:none;cursor:none}
+img{display:block;max-width:100%}
 
-/* GRAIN over everything */
-body::after{content:"";position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:9999;opacity:.5;mix-blend-mode:overlay;
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+/* grain */
+body::after{content:"";position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:9999;opacity:.45;mix-blend-mode:overlay;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 animation:grain 8s steps(10) infinite}
 @keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-2%,2%)}40%{transform:translate(2%,-1%)}60%{transform:translate(-1%,-2%)}80%{transform:translate(1%,1%)}}
 
-/* cursor */
-#cur{position:fixed;width:12px;height:12px;background:var(--signal);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:difference}
-body.hovering #cur{width:44px;height:44px;background:var(--paper)}
+#cur{position:fixed;width:12px;height:12px;background:var(--signal);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .18s,height .18s,background .18s;mix-blend-mode:difference}
+body.hovering #cur{width:46px;height:46px;background:var(--paper)}
+#bar{position:fixed;top:0;left:0;height:3px;background:var(--signal);z-index:10001;width:0}
 
 .mono{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
 .serif{font-family:'Instrument Serif',serif}
 .wrap{max-width:1500px;margin:0 auto;padding:0 5vw}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 5vw;mix-blend-mode:difference}
+nav{position:fixed;top:3px;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 5vw;mix-blend-mode:difference}
 nav .logo{font-family:'Archivo Black',sans-serif;font-size:16px;letter-spacing:.02em}
-nav .links{display:flex;gap:28px}
+nav .links{display:flex;gap:26px}
 nav .links a:hover{color:var(--signal)}
-nav .navRight{display:flex;align-items:center;gap:22px}
-nav .quickmail{border-bottom:1px solid transparent}
-nav .quickmail:hover{color:var(--signal);border-bottom-color:var(--signal)}
+nav .navRight{display:flex;align-items:center;gap:20px}
+nav .quickmail{border-bottom:1px solid var(--signal)}
+nav .quickmail:hover{color:var(--signal)}
 nav .status{display:flex;align-items:center;gap:8px}
-nav .status .dot{width:8px;height:8px;border-radius:50%;background:var(--volt);animation:blink 2s infinite}
+nav .status .dot{width:8px;height:8px;border-radius:50%;background:var(--signal);animation:blink 2s infinite}
 @keyframes blink{50%{opacity:.25}}
-@media(max-width:760px){nav .links{display:none}nav .status{display:none}}
+@media(max-width:820px){nav .links{display:none}nav .status{display:none}}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5vw 4vh;position:relative}
-.hero .meta-top{position:absolute;top:90px;left:5vw;right:5vw;display:flex;justify-content:space-between;opacity:.75}
+.hero .meta-top{position:absolute;top:92px;left:5vw;right:5vw;display:flex;justify-content:space-between;opacity:.75}
 h1{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(64px,14.5vw,230px);line-height:.86;letter-spacing:-.015em}
 h1 .row{display:block}
 h1 .serif{font-family:'Instrument Serif',serif;font-style:italic;text-transform:none;font-weight:400;letter-spacing:0;color:var(--signal)}
-.hero .sub{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin-top:34px;border-top:1px solid rgba(237,232,223,.25);padding-top:18px}
-.hero .sub p{max-width:420px;font-size:16px;line-height:1.5;color:rgba(237,232,223,.85)}
+.hero .sub{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin-top:32px;border-top:1px solid rgba(237,232,223,.25);padding-top:18px}
+.hero .sub p{max-width:430px;font-size:16px;line-height:1.5;color:rgba(237,232,223,.85)}
 .hero .coords{text-align:right;line-height:2}
 .hero .coords a{border-bottom:1px solid var(--signal)}
 .hero .coords a:hover{color:var(--signal)}
 
-/* MARQUEE */
-.marquee{border-top:1px solid rgba(237,232,223,.2);border-bottom:1px solid rgba(237,232,223,.2);overflow:hidden;padding:14px 0;background:var(--ink)}
+.marquee{border-top:1px solid rgba(237,232,223,.2);border-bottom:1px solid rgba(237,232,223,.2);overflow:hidden;padding:13px 0}
 .marquee .track{display:flex;gap:48px;white-space:nowrap;animation:mq 22s linear infinite;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:15px;letter-spacing:.06em}
 .marquee .track span em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--signal);text-transform:none}
 @keyframes mq{to{transform:translateX(-50%)}}
 
-/* SECTION HEADS */
-section{padding:14vh 0 6vh}
+section{padding:13vh 0 5vh}
 .shead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(237,232,223,.25);padding-bottom:14px;margin-bottom:6vh}
 .shead h2{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(30px,4.5vw,60px);letter-spacing:-.01em}
 .shead .mono{color:var(--signal)}
 
-/* WORK */
-.case{display:grid;grid-template-columns:1.25fr 1fr;gap:4vw;margin-bottom:12vh;align-items:start}
+/* RAMEN RUSH CASE */
+.case{display:grid;grid-template-columns:1.15fr 1fr;gap:4vw;align-items:start}
 @media(max-width:900px){.case{grid-template-columns:1fr}}
-.case .visual{position:relative}
 .case .info h3{font-family:'Archivo Black',sans-serif;font-size:clamp(26px,3vw,44px);text-transform:uppercase;line-height:1}
 .case .info h3 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;color:var(--signal)}
-.case .info .tags{display:flex;gap:10px;margin:18px 0;flex-wrap:wrap}
-.case .info .tag{border:1px solid rgba(237,232,223,.4);padding:5px 12px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
-.case .info .tag.live{background:var(--volt);color:var(--paper);border-color:var(--volt)}
-.case .info p{font-size:15.5px;line-height:1.65;color:rgba(237,232,223,.85);margin-bottom:14px;max-width:52ch}
-.case .info .facts{margin-top:22px;border-top:1px solid rgba(237,232,223,.2)}
-.case .info .facts div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(237,232,223,.2);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-.case .info .facts div span:last-child{color:var(--signal)}
+.case .tags{display:flex;gap:10px;margin:18px 0;flex-wrap:wrap}
+.case .tag{border:1px solid rgba(237,232,223,.4);padding:5px 12px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.case .tag.live{background:var(--signal);color:var(--paper);border-color:var(--signal)}
+.story{margin-top:8px}
+.story .row{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid rgba(237,232,223,.2)}
+.story .k{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal);padding-top:3px}
+.story p{font-size:14.5px;line-height:1.6;color:rgba(237,232,223,.88);max-width:52ch;margin:0}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(237,232,223,.25);margin-top:26px}
+@media(max-width:700px){.metrics{grid-template-columns:repeat(2,1fr)}}
+.metrics div{background:var(--ink);padding:16px 14px}
+.metrics .n{font-family:'Archivo Black',sans-serif;font-size:clamp(20px,2.4vw,32px);line-height:1}
+.metrics .n b{color:var(--signal)}
+.metrics .l{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.6);margin-top:6px;display:block}
+.rr-hero img{width:100%;border:1px solid rgba(237,232,223,.15)}
+.rr-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+@media(max-width:700px){.rr-strip{grid-template-columns:repeat(2,1fr)}}
+.rr-strip a{display:block;border:1px solid rgba(237,232,223,.15);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.rr-strip a:hover{transform:translateY(-6px) rotate(-.5deg)}
 
-/* generic artboard */
-.board{position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.55);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.board:hover{transform:scale(1.015) rotate(-.3deg)}
-.b-grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:overlay;
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
-.ratio45{aspect-ratio:4/5}
+/* POSTERS */
+.poster-block{margin:0 auto 11vh;max-width:880px}
+.poster-block.wide{max-width:1060px}
+.poster{position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.p-cap{display:flex;justify-content:space-between;margin-top:14px}
+.p-cap .t{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:15px}
+.p-cap .mono{color:rgba(237,232,223,.55)}
+.pg::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
 
-/* RAMEN RUSH flagship visual — receipt on orange (real client palette, kept as-is on purpose) */
-.rr{background:var(--rush);display:flex;align-items:center;justify-content:center}
-.rr .receipt{background:#fff;width:62%;padding:5% 5% 6%;font-family:'Space Mono',monospace;color:#111;transform:rotate(-2.5deg);box-shadow:14px 16px 0 rgba(17,17,16,.3);font-size:clamp(8px,1vw,13px);line-height:1.9}
-.rr .receipt .rh{font-family:'Archivo Black',sans-serif;font-size:2.2em;text-align:center;letter-spacing:.02em}
-.rr .receipt .c{text-align:center;font-size:.85em;letter-spacing:.06em}
-.rr .receipt .dash{border-top:2px dashed #111;margin:.8em 0}
-.rr .receipt .it{display:flex;justify-content:space-between}
-.rr .receipt .tot{display:flex;justify-content:space-between;font-family:'Archivo Black',sans-serif;font-size:1.3em}
-.rr .badge{position:absolute;top:5%;left:5%;color:var(--cream);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em}
-.rr .badge2{position:absolute;top:5%;right:5%;color:var(--cream);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em}
-.rr .lvl{position:absolute;bottom:5%;left:5%;right:5%;display:flex;justify-content:space-between;color:var(--cream);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em}
+/* P1 FINAL NIGHT */
+.p1{aspect-ratio:4/5;background:#0B0B0A;padding:7%}
+.p1 .beam{position:absolute;top:-30%;left:18%;width:34%;height:130%;background:linear-gradient(180deg,rgba(237,232,223,.13),transparent 70%);transform:rotate(18deg)}
+.p1 .beam.b2{left:52%;transform:rotate(-14deg);opacity:.7}
+.p1 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,223,.8);position:relative}
+.p1 .clock{position:relative;margin-top:10%;font-family:'Anton',sans-serif;font-size:clamp(110px,24vw,260px);line-height:.85;color:transparent;-webkit-text-stroke:2.5px var(--paper);letter-spacing:.01em}
+.p1 .clock b{color:var(--signal);-webkit-text-stroke:0}
+.p1 .line{position:relative;font-family:'Archivo Black',sans-serif;text-transform:uppercase;color:var(--paper);font-size:clamp(20px,3.4vw,38px);line-height:1.05;margin-top:7%}
+.p1 .line em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;color:var(--signal)}
+.p1 .foot{position:absolute;left:7%;right:7%;bottom:6%;border-top:1px solid rgba(237,232,223,.3);padding-top:2.5%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.8)}
 
-/* TERAS KK v3 — moody / restrained / monochrome-with-one-accent. the Nike / NOCTA / Astroworld shelf, not the D2C-app shelf. hard edges, grain, negative space, ghost-stroke numerals, a simulated spotlight instead of a real photo. */
-.tk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2vw}
-.tk{padding:9%;display:flex;flex-direction:column;position:relative;background:var(--ink);overflow:hidden}
-.tk .top{position:relative;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,232,223,.5)}
-.tk .foot{position:relative;margin-top:auto;padding-top:6%;border-top:1px solid rgba(237,232,223,.15);display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,232,223,.5)}
-.tk-vignette{position:absolute;inset:-15%;background:radial-gradient(ellipse at 50% 68%,rgba(237,232,223,.08),transparent 55%),radial-gradient(ellipse at 62% 110%,rgba(47,91,255,.16),transparent 62%);pointer-events:none}
-/* tk1 — quiet mark, not a bubble. restraint is the flex. */
-.tk1 .mark{position:relative;margin:auto 0;display:flex;align-items:center;gap:16px}
-.tk1 .ring{width:32px;height:32px;flex-shrink:0;border:1.5px solid var(--volt);border-radius:50%;position:relative}
-.tk1 .ring::after{content:"";position:absolute;inset:38%;background:var(--volt);border-radius:50%}
-.tk1 .word{font-family:'Archivo Black',sans-serif;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(28px,3.8vw,40px);color:var(--paper)}
-/* tk2 — the poster moment. type low in the frame, huge negative space above it, like the drop just happened off-camera. */
-.tk2{justify-content:flex-end}
-.tk2 h5{position:relative;font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:.86;font-size:clamp(38px,5.6vw,68px);color:var(--paper)}
-.tk2 h5 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;color:var(--volt)}
-/* tk3 / tk4 — ghost-stroke stat cards, hard ground, no glass */
-.tk3,.tk4{justify-content:flex-end}
-.tk3 .big,.tk4 .big{position:relative;font-family:'Archivo Black',sans-serif;font-size:clamp(56px,7.2vw,96px);line-height:.85;color:transparent;-webkit-text-stroke:1.5px var(--paper)}
-.tk3 .big b,.tk4 .big b{color:var(--volt);-webkit-text-stroke:0}
-.tk3 .line2,.tk4 .line2{position:relative;margin-top:5%;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.7)}
-.tk3 .stats,.tk4 .stats{position:relative;display:flex;gap:7%;margin-top:6%;padding-top:6%;border-top:1px solid rgba(237,232,223,.15)}
-.tk3 .stats div,.tk4 .stats div{display:flex;flex-direction:column;gap:3px}
-.tk3 .stats span:first-child,.tk4 .stats span:first-child{font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(237,232,223,.5)}
-.tk3 .stats span:last-child,.tk4 .stats span:last-child{font-family:'Archivo Black',sans-serif;font-size:13px;color:var(--paper)}
-/* tk5 — quote, sparse, no card */
-.tk5{justify-content:center;text-align:left}
-.tk5 .qm{position:relative;font-family:'Archivo Black',sans-serif;font-size:clamp(48px,6vw,70px);line-height:.5;color:var(--volt)}
-.tk5 p{position:relative;margin-top:5%;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(16px,1.9vw,21px);color:var(--paper);line-height:1.3;max-width:24ch}
-/* tk6 — season, minimal rows, no card */
-.tk6 h5{position:relative;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(22px,2.6vw,30px);color:var(--paper);margin:auto 0 8%}
-.tk6 h5 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;color:var(--volt)}
-.tk6 .rows{position:relative}
-.tk6 .rows div{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid rgba(237,232,223,.15);font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(237,232,223,.7)}
-.tk6 .rows b{font-family:'Archivo Black',sans-serif;font-size:12px;color:var(--paper)}
-.tk6 .rows .hl{color:var(--volt)}
+/* P2 90+4 */
+.p2{aspect-ratio:4/5;background:#0D0D0C;padding:7%}
+.p2 .pitch{position:absolute;inset:0;opacity:.16}
+.p2 .pitch .c{position:absolute;left:-22%;top:18%;width:74%;aspect-ratio:1;border:2px solid var(--paper);border-radius:50%}
+.p2 .pitch .l1{position:absolute;left:0;right:0;top:52%;height:2px;background:var(--paper)}
+.p2 .pitch .box{position:absolute;right:-8%;bottom:8%;width:44%;height:30%;border:2px solid var(--paper)}
+.p2 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,223,.8);position:relative}
+.p2 .num{position:relative;margin-top:8%;font-family:'Anton',sans-serif;font-size:clamp(120px,26vw,290px);line-height:.82;color:var(--signal)}
+.p2 .num small{display:block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:.16em;color:var(--paper);margin-top:5%;letter-spacing:.02em}
+.p2 .foot{position:absolute;left:7%;right:7%;bottom:6%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.8)}
 
-/* CONCEPT GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:3vw 2.5vw}
-.piece{display:flex;flex-direction:column;gap:14px}
-.piece .cap{display:flex;justify-content:space-between;align-items:baseline}
-.piece .cap .t{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:15px}
-.piece .cap .mono{color:rgba(237,232,223,.6)}
+/* P3 FESTIVAL */
+.p3{aspect-ratio:4/5;background:var(--paper);color:var(--ink);padding:7%}
+.p3 .beam{position:absolute;bottom:-20%;left:8%;width:26%;height:110%;background:linear-gradient(0deg,rgba(255,59,0,.16),transparent 75%);transform:rotate(-16deg)}
+.p3 .beam.b2{left:auto;right:8%;transform:rotate(16deg)}
+.p3 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;position:relative}
+.p3 h4{position:relative;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(46px,8.5vw,96px);line-height:.95;margin-top:7%}
+.p3 h4 em{font-style:italic;color:var(--signal)}
+.p3 .lineup{position:relative;margin-top:7%;border-top:2px solid var(--ink)}
+.p3 .lineup div{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(17,17,16,.3)}
+.p3 .lineup b{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(13px,1.7vw,19px)}
+.p3 .lineup span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em}
+.p3 .foot{position:absolute;left:7%;right:7%;bottom:6%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
 
-/* concept series disclosure — collapsed by default so the poster wall doesn't dominate the scroll */
-.concepts-toggle{border-top:1px solid rgba(237,232,223,.25);margin-top:2vh}
-.concepts-toggle summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(15px,2vw,20px);letter-spacing:.02em}
-.concepts-toggle summary::-webkit-details-marker{display:none}
-.concepts-toggle summary:hover{color:var(--signal)}
-.concepts-toggle summary .arrow{font-family:'Space Mono',monospace;font-size:13px;color:var(--signal);transition:transform .3s;flex-shrink:0}
-.concepts-toggle[open] summary .arrow{transform:rotate(180deg)}
-.concepts-toggle .inner{padding-bottom:2vh}
+/* P4 MARCH */
+.p4{aspect-ratio:4/5;background:var(--paper);color:var(--ink);padding:7%}
+.p4 .bl,.p4 .br{position:absolute;top:16%;bottom:26%;width:16%;opacity:.8}
+.p4 .bl{left:7%;border-right:2px solid var(--ink)}
+.p4 .br{right:7%;border-left:2px solid var(--ink)}
+.p4 .bl i,.p4 .br i{position:absolute;left:0;right:0;height:2px;background:var(--ink)}
+.p4 .mid{position:absolute;left:50%;top:47%;width:14px;height:14px;background:var(--signal);border-radius:50%;transform:translateX(-50%)}
+.p4 h4{position:relative;text-align:center;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(70px,15vw,170px);line-height:.9;margin-top:16%}
+.p4 .sub2{position:relative;text-align:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(17px,2.4vw,26px);margin-top:4%}
+.p4 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;position:relative}
+.p4 .foot{position:absolute;left:7%;right:7%;bottom:6%;border-top:2px solid var(--ink);padding-top:2.5%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
 
-/* SPORT */
-.sport{background:var(--ink);padding:7%}
-.sport .top{display:flex;justify-content:space-between;color:var(--paper);font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase}
-.sport .num{font-family:'Archivo Black',sans-serif;font-size:clamp(120px,17vw,240px);line-height:.85;color:transparent;-webkit-text-stroke:2px var(--paper);margin-top:8%}
-.sport .num b{color:var(--signal);-webkit-text-stroke:0}
-.sport .line{font-family:'Archivo Black',sans-serif;text-transform:uppercase;color:var(--paper);font-size:clamp(17px,2vw,26px);margin-top:6%}
-.sport .stat{position:absolute;bottom:7%;left:7%;right:7%;border-top:1px solid rgba(237,232,223,.35);padding-top:3%;display:flex;justify-content:space-between;color:rgba(237,232,223,.8);font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase}
+/* P5 SOFT GOODS */
+.p5{aspect-ratio:16/10;background:var(--paper);color:var(--paper2);padding:6%}
+.p5 h4{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(64px,11vw,150px);line-height:.92;color:#CFC5AE;letter-spacing:-.01em}
+.p5 h4 em{font-style:italic;color:var(--signal)}
+.p5 .thread{position:absolute;left:6%;right:6%;bottom:22%;height:2px;background:var(--signal)}
+.p5 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#9d937c}
+.p5 .foot{position:absolute;left:6%;right:6%;bottom:8%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9d937c}
 
-/* CAFE */
-.cafe{background:var(--cream);padding:8%;display:flex;flex-direction:column}
-.cafe .frame{flex:1;border:3px solid var(--signal);padding:7%;display:flex;flex-direction:column;justify-content:center;position:relative}
-.cafe h4{font-family:'Instrument Serif',serif;font-size:clamp(34px,4.5vw,58px);color:var(--signal);line-height:1.02}
-.cafe h4 span{display:block;font-style:italic}
-.cafe .tm{position:absolute;top:8%;right:8%;color:var(--signal);font-family:'Space Mono',monospace;font-size:10px}
-.cafe .foot{display:flex;justify-content:space-between;color:rgba(17,17,16,.55);font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;margin-top:6%}
-
-/* MUSEUM */
-.museum{background:var(--paper);padding:8%;display:flex;flex-direction:column;color:var(--ink)}
-.museum .k{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(17,17,16,.55)}
-.museum h4{font-family:'Instrument Serif',serif;font-size:clamp(38px,5vw,64px);line-height:1;margin:auto 0;font-weight:400}
-.museum h4 em{font-style:italic;color:var(--signal)}
-.museum .grid4{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);border-top:1.5px solid var(--ink);padding-top:4%}
-
-/* HOTEL */
-.hotel{background:var(--ink2);padding:8%;display:flex;flex-direction:column;color:var(--paper)}
-.hotel .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase}
-.hotel .no{font-family:'Archivo Black',sans-serif;font-size:clamp(80px,11vw,150px);line-height:.9;margin:auto 0}
-.hotel .no small{display:block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:.24em;letter-spacing:.02em;color:var(--volt);text-transform:none}
-.hotel .spec{border-top:1px solid rgba(237,232,223,.3);padding-top:5%;display:flex;flex-direction:column;gap:6px;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase}
-.hotel .spec div{display:flex;justify-content:space-between}
-
-/* RESTAURANT */
-.rest{background:var(--ink);padding:9%;display:flex;flex-direction:column;color:var(--paper)}
-.rest .k{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,232,223,.5);text-align:center}
-.rest .menu{margin:auto 0;display:flex;flex-direction:column;gap:12px}
-.rest .menu div{display:flex;align-items:baseline;gap:10px}
-.rest .menu .d{font-family:'Instrument Serif',serif;font-size:clamp(17px,1.9vw,24px);white-space:nowrap}
-.rest .menu .dots{flex:1;border-bottom:1px dotted rgba(237,232,223,.4)}
-.rest .menu .p{font-family:'Space Mono',monospace;font-size:11px}
-.rest .foot{text-align:center;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,223,.5)}
-
-/* MUSIC */
-.music{background:var(--ink);padding:7%;display:flex;flex-direction:column;position:relative}
-.music h4{font-family:'Archivo Black',sans-serif;text-transform:uppercase;color:var(--signal);font-size:clamp(40px,5.5vw,70px);line-height:.9;transform:rotate(-3deg) skewX(-6deg);margin:auto 0;text-shadow:4px 4px 0 rgba(255,59,0,.18)}
-.music h4 span{display:block;transform:translateX(9%) rotate(1.5deg)}
-.music .scrib{position:absolute;top:8%;right:8%;width:74px;height:74px;border:3px solid var(--signal);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--signal);font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-align:center;transform:rotate(10deg)}
-.music .foot{display:flex;justify-content:space-between;color:rgba(237,232,223,.7);font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase}
-
-/* OUTDOOR */
-.roht{background:var(--ink);padding:8%;display:flex;flex-direction:column;position:relative}
-.roht .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,223,.75)}
-.roht h4{margin:auto 0;font-family:'Archivo Black',sans-serif;text-transform:uppercase;color:var(--volt);font-size:clamp(40px,5vw,64px);line-height:.9}
-.roht h4 small{display:block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;font-size:.42em;color:var(--paper)}
-.roht .foot{border-top:1px solid rgba(47,91,255,.35);padding-top:5%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.75)}
-
-/* PRESS — grotesque poster, type is the image */
-.press{background:var(--ink);padding:9%;display:flex;flex-direction:column;justify-content:space-between}
-.press .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.6)}
-.press h4{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(64px,10vw,140px);line-height:.82;color:var(--paper)}
-.press h4 .dot{color:var(--signal)}
-.press .foot{border-top:1px solid rgba(237,232,223,.25);padding-top:5%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.6)}
-
-/* BOX SCORE — sport scoreboard poster, inspo: Lakers boxscore */
-.boxscore{background:var(--ink);padding:8%;display:flex;flex-direction:column;position:relative}
-.boxscore .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.6)}
-.boxscore .score{display:flex;align-items:center;gap:5%;margin:8% 0 4%}
-.boxscore .score .n{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,9.5vw,110px);line-height:.78;color:var(--paper)}
-.boxscore .score .vs{width:36px;height:36px;flex-shrink:0;border:1.5px solid var(--signal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:8.5px;color:var(--signal)}
-.boxscore .teams{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(237,232,223,.8)}
-.boxscore .tag{align-self:flex-start;background:var(--signal);color:var(--ink);font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;margin-top:6%}
-.boxscore .foot{margin-top:auto;padding-top:6%;border-top:1px solid rgba(237,232,223,.2);display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(237,232,223,.5)}
-
-/* GRID RECAP — stat mosaic, inspo: player highlight grid */
-.gridrecap{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:2px;background:var(--ink)}
-.gridrecap .cell{display:flex;align-items:flex-end;padding:10%;position:relative}
-.gridrecap .cell.big{grid-column:span 2;grid-row:span 2;align-items:flex-start}
-.gridrecap .cell .num{font-family:'Bebas Neue',sans-serif;font-size:clamp(46px,6.6vw,78px);color:var(--paper);line-height:.8}
-.gridrecap .cell .lbl{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:.06em;text-transform:uppercase;color:rgba(237,232,223,.75)}
-.gridrecap .c1{background:var(--ink2)}
-.gridrecap .c2{background:var(--signal)}
-.gridrecap .c3{background:var(--ink)}
-.gridrecap .c4{background:var(--volt)}
-.gridrecap .c5{background:var(--ink2)}
-
-/* SAUCE — packaging label system, inspo: Sugoi sauce identity */
-.sauce{background:var(--cream);padding:9%;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--ink)}
-.sauce .top{width:100%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,16,.55)}
-.sauce .brand{margin:auto 0 0;font-family:'Baloo 2',sans-serif;font-weight:800;text-transform:lowercase;font-size:clamp(38px,5.6vw,60px);color:var(--signal);line-height:.85}
-.sauce .flavor{margin-top:4%;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(12px,1.6vw,16px);letter-spacing:.02em}
-.sauce .est{width:100%;margin-top:auto;padding-top:9%;border-top:1px solid rgba(17,17,16,.15);display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,16,.55)}
-
-/* COLLAGE — streetwear archive scrapbook, inspo: sneaker store collage */
-.collage{background:linear-gradient(155deg,#4a4a46 0%,#8f8b7c 55%,#e7e2d3 100%);padding:9%;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
-.collage .tag{position:absolute;background:var(--paper);color:var(--ink);font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px}
-.collage .tag.t1{top:9%;left:8%;transform:rotate(-3deg)}
-.collage .tag.t2{top:32%;right:8%;transform:rotate(2deg)}
-.collage .roman{position:absolute;top:8%;right:9%;font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:rgba(237,232,223,.9)}
-.collage .barcode{width:64px;height:16px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px);margin-bottom:6%}
-.collage h4{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(26px,3.4vw,38px);color:var(--ink);line-height:.95}
-.collage .foot{margin-top:6%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,16,.6)}
-
-/* TRADE — sponsor announcement template, inspo: team "welcome" graphic */
-.trade{background:var(--ink2);padding:9%;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative}
-.trade .sponsor{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.5)}
-.trade .photo{width:58%;aspect-ratio:3/4;background:linear-gradient(160deg,#2c2c29,#55534a);margin:7% 0;border:1px solid rgba(237,232,223,.25)}
-.trade h4{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5.2vw,54px);color:var(--volt);letter-spacing:.02em}
-.trade .nm{margin-top:3%;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(12px,1.5vw,15px);color:var(--paper)}
-.trade .route{margin-top:5%;display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(237,232,223,.7)}
-.trade .route .arrow{color:var(--signal)}
-
-/* FLEA — print nostalgia, kraft + keyline + stamp */
-.flea{background:var(--paper2);padding:8%;display:flex;flex-direction:column;color:var(--ink)}
-.flea .frame{flex:1;border:3px solid var(--signal);padding:7%;display:flex;flex-direction:column;justify-content:center;position:relative}
-.flea h4{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(30px,4vw,50px);line-height:.95}
-.flea h4 span{display:block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:.4em;margin-top:6%}
-.flea .tm{position:absolute;top:8%;right:8%;font-family:'Space Mono',monospace;font-size:10px;color:var(--signal)}
-.flea .stamp{position:absolute;bottom:8%;right:8%;width:64px;height:64px;border:2px solid var(--signal);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--signal);transform:rotate(-8deg)}
-.flea .foot{display:flex;justify-content:space-between;margin-top:6%;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,16,.6)}
-
-/* MANIFESTO */
-.mani{padding:16vh 0}
-.mani .line{font-size:clamp(28px,4.6vw,64px);line-height:1.12;font-family:'Archivo',sans-serif;font-weight:500;max-width:1200px}
+/* APPROACH / SERVICES / ABOUT / CONTACT */
+.mani .line{font-size:clamp(28px,4.6vw,64px);line-height:1.12;font-weight:500;max-width:1200px}
 .mani .line em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--signal)}
 .mani .line .mut{color:rgba(237,232,223,.35)}
-.principles{margin-top:8vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(237,232,223,.2)}
+.principles{margin-top:7vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(237,232,223,.2)}
 .principles div{background:var(--ink);padding:26px 22px}
 .principles .n{font-family:'Space Mono',monospace;color:var(--signal);font-size:11px;letter-spacing:.12em;display:block;margin-bottom:12px}
 .principles p{font-size:14.5px;line-height:1.6;color:rgba(237,232,223,.85)}
 .principles b{color:var(--paper)}
-
-/* SERVICES */
-.svc{border-top:1px solid rgba(237,232,223,.2)}
-.svc .row{display:grid;grid-template-columns:80px 1fr 1fr;gap:3vw;padding:34px 0;border-bottom:1px solid rgba(237,232,223,.2);align-items:baseline;transition:padding .3s}
+.svc .row{display:grid;grid-template-columns:80px 1fr 1fr;gap:3vw;padding:32px 0;border-bottom:1px solid rgba(237,232,223,.2);align-items:baseline;transition:padding .3s}
 .svc .row:hover{padding-left:14px}
 .svc .row:hover .t{color:var(--signal)}
 .svc .n{font-family:'Space Mono',monospace;font-size:11px;color:rgba(237,232,223,.5)}
 .svc .t{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(20px,2.6vw,34px);transition:color .3s}
 .svc p{font-size:14.5px;line-height:1.6;color:rgba(237,232,223,.75);max-width:46ch}
 @media(max-width:760px){.svc .row{grid-template-columns:1fr}}
-
-/* ABOUT */
 .about{display:grid;grid-template-columns:1fr 1.2fr;gap:4vw;align-items:center}
 @media(max-width:860px){.about{grid-template-columns:1fr}}
-.about .photo{aspect-ratio:4/5;background:linear-gradient(160deg,#2a2a28,#151514);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.about .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:4% center;filter:contrast(1.12) saturate(.82) sepia(.12);display:block}
-.about .photo span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(237,232,223,.55);text-transform:uppercase;text-align:center;line-height:2}
-.about .photo .cap{z-index:2;background:rgba(17,17,16,.55);padding:4px 8px}
-.about .photo .cap{position:absolute;bottom:12px;left:12px;font-family:'Space Mono',monospace;font-size:9.5px;color:rgba(237,232,223,.5);letter-spacing:.08em}
+.about .photo{aspect-ratio:4/5;position:relative;overflow:hidden;background:#1c1c1a}
+.about .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:4% center;filter:contrast(1.12) saturate(.82) sepia(.12)}
+.about .photo .cap{position:absolute;bottom:12px;left:12px;font-family:'Space Mono',monospace;font-size:9.5px;color:rgba(237,232,223,.75);letter-spacing:.08em;background:rgba(17,17,16,.55);padding:4px 8px;z-index:2}
 .about h3{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(26px,3.4vw,46px);line-height:1.05;margin-bottom:22px}
 .about h3 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;color:var(--signal)}
 .about p{font-size:16px;line-height:1.7;color:rgba(237,232,223,.85);margin-bottom:14px;max-width:56ch}
-
-/* CONTACT */
-.contact{padding:18vh 0 6vh;text-align:left}
+.contact{padding:16vh 0 6vh}
 .contact h2{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(46px,9.5vw,150px);line-height:.9;letter-spacing:-.015em}
 .contact h2 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;color:var(--signal)}
 .contact .mail{display:inline-block;margin-top:5vh;font-family:'Space Mono',monospace;font-size:clamp(15px,2.4vw,26px);border-bottom:2px solid var(--signal);padding-bottom:6px}
 .contact .mail:hover{color:var(--signal)}
 .contact .socials{margin-top:26px;display:flex;gap:26px}
 .contact .socials a:hover{color:var(--signal)}
-
-footer{border-top:1px solid rgba(237,232,223,.2);margin-top:10vh;padding:22px 0;display:flex;justify-content:space-between;flex-wrap:gap;gap:12px}
+footer{border-top:1px solid rgba(237,232,223,.2);margin-top:9vh;padding:22px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 footer .mono{color:rgba(237,232,223,.55)}
 
-/* reveal */
 .rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
+.noodle{position:fixed;top:-60px;font-size:34px;z-index:9998;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(340deg)}}
+body.capy{--signal:#F3B8C6}
 </style>
 </head>
 <body>
-<div id="cur"></div>
+<div id="cur"></div><div id="bar"></div>
 
 <nav>
-  <a class="logo" href="#top">GERRIT LEHE©</a>
+  <a class="logo" href="#top" id="logoBtn">GERRIT LEHE©</a>
   <div class="links mono">
-    <a href="#work">Work</a><a href="#approach">Approach</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+    <a href="#work">Work</a><a href="#posters">Posters</a><a href="#approach">Approach</a><a href="#about">About</a><a href="#contact">Contact</a>
   </div>
   <div class="navRight mono">
     <a class="quickmail" href="mailto:gerrit@shiftlabstudio.com">EMAIL →</a>
-    <div class="status"><span class="dot"></span>OPEN FOR WORK — 07/2026</div>
+    <div class="status"><span class="dot"></span><span id="clock">OPEN FOR WORK</span></div>
   </div>
 </nav>
 
@@ -348,7 +224,7 @@ footer .mono{color:rgba(237,232,223,.55)}
   </h1>
   <div class="sub rv">
     <p>I design the things people actually see — posters, social systems, matchday graphics. Type carries the information, photography carries the emotion, grain makes it feel printed.</p>
-    <div class="coords mono">59.4370°N, 24.7536°E<br>EST. 2005 · SHIFTLAB STUDIO<br>@GERRITLEHE<br><a href="mailto:gerrit@shiftlabstudio.com">GERRIT@SHIFTLABSTUDIO.COM</a></div>
+    <div class="coords mono">59.4370°N, 24.7536°E<br>SHIFTLAB STUDIO · @GERRITLEHE<br><a href="mailto:gerrit@shiftlabstudio.com">GERRIT@SHIFTLABSTUDIO.COM</a></div>
   </div>
 </header>
 
@@ -359,323 +235,149 @@ footer .mono{color:rgba(237,232,223,.55)}
   </div>
 </div>
 
+<!-- WORK -->
 <section id="work">
   <div class="wrap">
-    <div class="shead rv"><h2>Selected Work</h2><span class="mono">02 CASES</span></div>
-
-    <!-- RAMEN RUSH -->
+    <div class="shead rv"><h2>Live Client Work</h2><span class="mono">RAMEN RUSH — 2026</span></div>
     <div class="case rv">
-      <div class="visual">
-        <div class="board b-grain ratio45 rr">
-          <span class="badge">RAMEN RUSH © 2026</span>
-          <span class="badge2">NARVA MNT 7</span>
-          <div class="receipt">
-            <div class="rh">RAMEN RUSH</div>
-            <div class="c">NARVA MNT 7, TALLINN 10117</div>
-            <div class="dash"></div>
-            <div class="it"><span>RAMEN (YOUR PICK)</span><span>X.90</span></div>
-            <div class="it"><span>EGG</span><span>0.50</span></div>
-            <div class="it"><span>CHEESE</span><span>0.50</span></div>
-            <div class="it"><span>KIMCHI</span><span>0.90</span></div>
-            <div class="dash"></div>
-            <div class="tot"><span>FULL BELLY:</span><span>X.80 €</span></div>
-            <div class="dash"></div>
-            <div class="c">EAT. ENJOY. REPEAT.</div>
-          </div>
-          <div class="lvl"><span>SPICE LVL 1–10</span><span>70+ RAMEN · 5 COUNTRIES</span></div>
+      <div>
+        <div class="rr-hero"><img src="work/rr-kaas.png" alt="Ramen Rush cover design" loading="lazy"></div>
+        <div class="rr-strip">
+          <a href="work/rr-kviitung.png" target="_blank" rel="noopener"><img src="work/rr-kviitung.png" alt="Receipt poster" loading="lazy"></a>
+          <a href="work/rr-top5.png" target="_blank" rel="noopener"><img src="work/rr-top5.png" alt="Top 5 ranking post" loading="lazy"></a>
+          <a href="work/rr-2140.png" target="_blank" rel="noopener"><img src="work/rr-2140.png" alt="21:40 late night post" loading="lazy"></a>
+          <a href="work/rr-ilm.png" target="_blank" rel="noopener"><img src="work/rr-ilm.png" alt="Weather reactive post" loading="lazy"></a>
         </div>
       </div>
       <div class="info">
         <h3>Ramen Rush — <em>a social system, not posts.</em></h3>
-        <div class="tags"><span class="tag live">LIVE CLIENT WORK</span><span class="tag">Brand system</span><span class="tag">Social</span><span class="tag">28 templates</span></div>
-        <p>Estonia's first self-serve ramen bar. One wall, 70+ instant ramens from five countries, build-your-own bowls, spice levels 1–10 — and a social presence that told none of it.</p>
-        <p>I built the whole engine: 28 post templates on a locked 3-color system, a 30-day content calendar with ready captions, Facebook covers, bio architecture, a TikTok format library and a loyalty mechanic (Wall of Flame). Concept and colors untouched — execution turned up to eleven.</p>
-        <div class="facts">
-          <div><span>Deliverables</span><span>28 templates · 30-day calendar · FB kit</span></div>
-          <div><span>System</span><span>3 colors · 3 typefaces · real data only</span></div>
-          <div><span>Year</span><span>2026</span></div>
+        <div class="tags"><span class="tag live">LIVE CLIENT</span><span class="tag">Brand system</span><span class="tag">28 templates</span><span class="tag">Franchise-ready</span></div>
+        <div class="story">
+          <div class="row"><span class="k">Problem</span><p>Estonia's first self-serve ramen bar — 70+ ramens, build-your-own bowls, spice levels 1–10 — and a feed that told none of it. Two posts. Nobody knew how the place worked.</p></div>
+          <div class="row"><span class="k">System</span><p>28 post templates on a locked color logic, 30-day calendar with ready captions, Facebook kit, loyalty mechanics, a brand book built for franchising. Cold DM → owner meeting → ongoing partnership.</p></div>
+          <div class="row"><span class="k">Result</span><p>The account came alive within two weeks — and the brand now has rails any future location can run on.</p></div>
+        </div>
+        <div class="metrics">
+          <div><span class="n">56 <b>→</b> 277</span><span class="l">Followers, first 2 weeks</span></div>
+          <div><span class="n">2 <b>→</b> 10</span><span class="l">Posts live</span></div>
+          <div><span class="n">28</span><span class="l">Templates delivered</span></div>
+          <div><span class="n">V2.0</span><span class="l">Brand book, franchise-grade</span></div>
         </div>
       </div>
     </div>
-
-    <!-- TERAS KK (fictional club — self-initiated, no real club identity) -->
-    <div class="case rv" style="grid-template-columns:1fr;margin-bottom:6vh">
-      <div class="info">
-        <h3>Teras KK — <em>a club that doesn't exist, built anyway.</em></h3>
-        <div class="tags"><span class="tag">Concept — self-initiated</span><span class="tag">Basketball</span><span class="tag">Fictional league</span><span class="tag">Season system</span></div>
-        <p>A fictional Estonian basketball club, invented to prototype a complete matchday system with no client, no waiting on sign-off, no real names or scores to protect: chant posters, a matchday final, quarter-by-quarter score cards, a player-of-the-game graphic and a season schedule, all speaking one visual language on a locked two-color system.</p>
-        <p>It's the same craft I bring to real clubs — I just built the client too. Portfolio bait for federations and clubs who want this exact machine running on their real data.</p>
-      </div>
-    </div>
-    <div class="tk-grid rv" style="margin-bottom:12vh">
-      <!-- tk1 — quiet mark -->
-      <div class="board b-grain ratio45 tk tk1">
-        <div class="tk-vignette"></div>
-        <div class="top"><span>Teras KK</span><span>Identity — v.03</span></div>
-        <div class="mark">
-          <div class="ring"></div>
-          <div class="word">Teras</div>
-        </div>
-        <div class="foot"><span>Terase linn</span><span>Est. 2026</span></div>
-      </div>
-      <!-- tk2 — the poster moment -->
-      <div class="board b-grain ratio45 tk tk2">
-        <div class="tk-vignette"></div>
-        <div class="top"><span>Põhja Liiga — Final</span><span>2026</span></div>
-        <h5>One more<br><em>quarter.</em></h5>
-      </div>
-      <!-- tk3 — ghost-stroke score card -->
-      <div class="board b-grain ratio45 tk tk3">
-        <div class="tk-vignette"></div>
-        <div class="top"><span>Final — Full Time</span><span>Põhja Liiga '26</span></div>
-        <div class="big">81<b>–</b>76</div>
-        <div class="line2">Won it in the fourth</div>
-        <div class="stats">
-          <div><span>Q1</span><span>22–19</span></div>
-          <div><span>Half</span><span>40–35</span></div>
-          <div><span>Result</span><span>Teras</span></div>
-        </div>
-      </div>
-      <!-- tk4 — ghost-stroke player card -->
-      <div class="board b-grain ratio45 tk tk4">
-        <div class="tk-vignette"></div>
-        <div class="top"><span>Player of the Game</span><span>Põhja Liiga</span></div>
-        <div class="big">11</div>
-        <div class="line2">[Mängija nimi]</div>
-        <div class="stats">
-          <div><span>Pts</span><span>[PTS]</span></div>
-          <div><span>Reb</span><span>[REB]</span></div>
-          <div><span>Eff</span><span>[EFF]</span></div>
-        </div>
-      </div>
-      <!-- tk5 — quote, sparse -->
-      <div class="board b-grain ratio45 tk tk5">
-        <div class="tk-vignette"></div>
-        <div class="top"><span>Peatreener</span><span>2026</span></div>
-        <div class="qm">"</div>
-        <p>Meie linn ehitab terast, mitte klaasi.</p>
-        <div class="foot"><span>— Peatreener</span><span>Teras KK</span></div>
-      </div>
-      <!-- tk6 — season, minimal -->
-      <div class="board b-grain ratio45 tk tk6">
-        <div class="tk-vignette"></div>
-        <div class="top"><span>Hooaeg '26/27</span><span>Teras KK</span></div>
-        <h5>Unfinished <em>business.</em></h5>
-        <div class="rows">
-          <div><b>[KP]</b><span>vs [Vastane]</span><span class="hl">Kodus</span></div>
-          <div><b>[KP]</b><span>@ [Vastane]</span><span>Võõrsil</span></div>
-          <div><b>[KP]</b><span>vs [Vastane]</span><span class="hl">Kodus</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CONCEPT GRID — collapsed by default, one click away instead of dominating the scroll -->
-    <details class="concepts-toggle rv">
-      <summary>View the concept series — 14 rooms, one voice <span class="arrow">↓</span></summary>
-      <div class="inner">
-        <div class="shead rv" style="margin-top:2vh"><h2 style="font-size:clamp(20px,2.6vw,34px)">Concept Series — every room a brand can live in</h2><span class="mono">SELF-INITIATED · 14</span></div>
-        <div class="grid">
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 sport">
-              <div class="top"><span>GAME 07 — PLAYOFFS</span><span>SAKU SUURHALL</span></div>
-              <div class="num">4<b>:</b>3</div>
-              <div class="line">Final night.<br>Nothing saved for later.</div>
-              <div class="stat"><span>ATT. 4,216</span><span>19:00 TIP-OFF</span><span>05.2026</span></div>
-            </div>
-            <div class="cap"><span class="t">Sport / Matchday</span><span class="mono">CONCEPT — 01</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 cafe">
-              <div class="frame">
-                <span class="tm">™</span>
-                <h4>Slow<br>mornings,<span>served daily.</span></h4>
-              </div>
-              <div class="foot"><span>FILTER · POUR-OVER · BUNS</span><span>EST. 2026</span></div>
-            </div>
-            <div class="cap"><span class="t">Café / Print nostalgia</span><span class="mono">CONCEPT — 02</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 museum">
-              <div class="k">EXHIBITION — HALL B · 12.09 → 30.11</div>
-              <h4>Silence,<br><em>loudly.</em></h4>
-              <div class="grid4"><span>CURATOR: [NAME]</span><span>ADMISSION 8€</span><span>WED–SUN 11–19</span><span>KAI ART CENTER</span></div>
-            </div>
-            <div class="cap"><span class="t">Museum / Editorial</span><span class="mono">CONCEPT — 03</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 hotel">
-              <div class="top"><span>HOTEL ÖÖ — TALLINN</span><span>ROOM SPEC</span></div>
-              <div class="no">214<small>the corner room, the good light.</small></div>
-              <div class="spec">
-                <div><span>FLOOR</span><span>02</span></div>
-                <div><span>VIEW</span><span>OLD TOWN, NORTH</span></div>
-                <div><span>CHECK-IN</span><span>15:00 →</span></div>
-              </div>
-            </div>
-            <div class="cap"><span class="t">Hotel / Utility layer</span><span class="mono">CONCEPT — 04</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 rest">
-              <div class="k">TASTING — FIVE COURSES · SEATING 18:00 / 21:00</div>
-              <div class="menu">
-                <div><span class="d">Cured trout, horseradish snow</span><span class="dots"></span><span class="p">12</span></div>
-                <div><span class="d">Rye, smoked butter</span><span class="dots"></span><span class="p">6</span></div>
-                <div><span class="d">Duck, black currant</span><span class="dots"></span><span class="p">28</span></div>
-                <div><span class="d">Sea buckthorn, white chocolate</span><span class="dots"></span><span class="p">11</span></div>
-              </div>
-              <div class="foot">RESERVATIONS ONLY · TALLINN OLD TOWN</div>
-            </div>
-            <div class="cap"><span class="t">Restaurant / Menu poster</span><span class="mono">CONCEPT — 05</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 music">
-              <div class="scrib">NO PHONES ON THE FLOOR</div>
-              <h4>Basement<span>frequencies.</span></h4>
-              <div class="foot"><span>23:59 → LATE</span><span>LOCATION DROPS 21:00</span></div>
-            </div>
-            <div class="cap"><span class="t">Music / Rave artifact</span><span class="mono">CONCEPT — 06</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 roht">
-              <div class="top"><span>ROHEJAHT '26</span><span>VOL. 01</span></div>
-              <h4>Into the<br>green.<small>the hunt is on.</small></h4>
-              <div class="foot"><span>3 PÄEVA · METSAS</span><span>59.43°N — SOMEWHERE</span></div>
-            </div>
-            <div class="cap"><span class="t">Outdoor / Event</span><span class="mono">CONCEPT — 07</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 press">
-              <div class="top"><span>SELF-INITIATED — PRESS RUN</span><span>2026</span></div>
-              <h4>Printed<span class="dot">.</span></h4>
-              <div class="foot"><span>ED. 1/100</span><span>RISO · 2 COLOR</span></div>
-            </div>
-            <div class="cap"><span class="t">Poster / Grotesque type</span><span class="mono">CONCEPT — 08</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 flea">
-              <div class="frame">
-                <span class="tm">™</span>
-                <span class="stamp">LIMITED<br>RUN</span>
-                <h4>Tallinn<br>Flea<span>vol. 04.</span></h4>
-              </div>
-              <div class="foot"><span>KALASADAM · 06:00–14:00</span><span>ESTD. 2019</span></div>
-            </div>
-            <div class="cap"><span class="t">Flyer / Print nostalgia</span><span class="mono">CONCEPT — 09</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 boxscore">
-              <div class="top"><span>Playoffs — Game 6</span><span>2026</span></div>
-              <div class="score">
-                <span class="n">96</span>
-                <span class="vs">VS</span>
-                <span class="n">91</span>
-              </div>
-              <div class="teams"><span>Ida BK</span><span>Lääne KK</span></div>
-              <div class="tag">End of OT</div>
-              <div class="foot"><span>Att. 3,140</span><span>Home</span></div>
-            </div>
-            <div class="cap"><span class="t">Sport / Box score</span><span class="mono">CONCEPT — 10</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 gridrecap">
-              <div class="cell big c1"><div><div class="num">31</div><div class="lbl">Pts — Career High</div></div></div>
-              <div class="cell c2"><span class="lbl">Reb 9</span></div>
-              <div class="cell c3"><span class="lbl">Ast 6</span></div>
-              <div class="cell c4"><span class="lbl">3PM 4</span></div>
-              <div class="cell c5"><span class="lbl">Eff 28</span></div>
-            </div>
-            <div class="cap"><span class="t">Sport / Stat grid</span><span class="mono">CONCEPT — 11</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 sauce">
-              <div class="top"><span>Small batch</span><span>No. 004</span></div>
-              <div class="brand">sting</div>
-              <div class="flavor">Chili · Garlic · Sesame</div>
-              <div class="est"><span>Net 250ml</span><span>Est. 2026</span></div>
-            </div>
-            <div class="cap"><span class="t">Packaging / Label system</span><span class="mono">CONCEPT — 12</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 collage">
-              <span class="roman">VII</span>
-              <span class="tag t1">Condition: Used</span>
-              <span class="tag t2">Lot 07</span>
-              <div class="barcode"></div>
-              <h4>Archive<br>Find.</h4>
-              <div class="foot"><span>Thrift &amp; Resell</span><span>Vol. 02</span></div>
-            </div>
-            <div class="cap"><span class="t">Streetwear / Archive collage</span><span class="mono">CONCEPT — 13</span></div>
-          </div>
-
-          <div class="piece rv">
-            <div class="board b-grain ratio45 trade">
-              <span class="sponsor">Powered by — Concept</span>
-              <div class="photo"></div>
-              <h4>Welcome</h4>
-              <div class="nm">Player Name</div>
-              <div class="route"><span>Former Club</span><span class="arrow">→</span><span>New Club</span></div>
-            </div>
-            <div class="cap"><span class="t">Sport / Trade template</span><span class="mono">CONCEPT — 14</span></div>
-          </div>
-
-        </div>
-      </div>
-    </details>
   </div>
 </section>
 
+<!-- POSTERS -->
+<section id="posters">
+  <div class="wrap">
+    <div class="shead rv"><h2>Poster Work</h2><span class="mono">SELF-INITIATED — BIG STAGE ENERGY</span></div>
+
+    <div class="poster-block rv">
+      <div class="poster pg p1 tilt">
+        <div class="beam"></div><div class="beam b2"></div>
+        <div class="top"><span>GAME 7 — FINALS</span><span>ONE NIGHT ONLY</span></div>
+        <div class="clock">48<b>:</b>00</div>
+        <div class="line">Forty-eight minutes<br>for <em>everything.</em></div>
+        <div class="foot"><span>ATT. 19,812 — SOLD OUT</span><span>TIP-OFF 21:00</span><span>06.2026</span></div>
+      </div>
+      <div class="p-cap"><span class="t">Basketball / Finals night</span><span class="mono">POSTER — 01</span></div>
+    </div>
+
+    <div class="poster-block rv">
+      <div class="poster pg p2 tilt">
+        <div class="pitch"><span class="c"></span><span class="l1"></span><span class="box"></span></div>
+        <div class="top"><span>CUP FINAL</span><span>FULL TIME NEVER CAME</span></div>
+        <div class="num">90+4′<small>nobody leaves. nobody breathes.</small></div>
+        <div class="foot"><span>STOPPAGE TIME</span><span>1–1 · AGG. 2–2</span><span>07.2026</span></div>
+      </div>
+      <div class="p-cap"><span class="t">Football / Stoppage time</span><span class="mono">POSTER — 02</span></div>
+    </div>
+
+    <div class="poster-block rv">
+      <div class="poster pg p3 tilt">
+        <div class="beam"></div><div class="beam b2"></div>
+        <div class="top"><span>TWO STAGES — ONE SUNRISE</span><span>VOL. III</span></div>
+        <h4>Sound check<br>at <em>dawn.</em></h4>
+        <div class="lineup">
+          <div><b>Night Bureau</b><span>23:00 — MAIN</span></div>
+          <div><b>Velvet Static</b><span>01:00 — MAIN</span></div>
+          <div><b>Marta Kivi</b><span>02:30 — GARDEN</span></div>
+          <div><b>Secret guest</b><span>04:44 — ROOF</span></div>
+        </div>
+        <div class="foot"><span>GATES 21:00 · 18+</span><span>TALLINN HARBOUR</span></div>
+      </div>
+      <div class="p-cap"><span class="t">Festival / Lineup poster</span><span class="mono">POSTER — 03</span></div>
+    </div>
+
+    <div class="poster-block rv">
+      <div class="poster pg p4 tilt">
+        <div class="top"><span>68 TEAMS — 67 GAMES</span><span>ONE NET</span></div>
+        <div class="bl"><i style="top:0"></i><i style="top:33%"></i><i style="top:66%"></i><i style="bottom:0"></i></div>
+        <div class="br"><i style="top:0"></i><i style="top:33%"></i><i style="top:66%"></i><i style="bottom:0"></i></div>
+        <div class="mid"></div>
+        <h4>March.</h4>
+        <div class="sub2">sixty-eight dreams enter. one cuts the net.</div>
+        <div class="foot"><span>SELECTION SUNDAY 03.2026</span><span>WIN OR GO HOME</span></div>
+      </div>
+      <div class="p-cap"><span class="t">College basketball / Bracket</span><span class="mono">POSTER — 04</span></div>
+    </div>
+
+    <div class="poster-block wide rv">
+      <div class="poster pg p5 tilt">
+        <div class="top"><span>ESSENTIALS — DROP 01</span><span>RESTOCK NEVER</span></div>
+        <h4 style="margin-top:5%">soft goods,<br><em>hard sellout.</em></h4>
+        <div class="thread"></div>
+        <div class="foot"><span>HEAVYWEIGHT 480 GSM</span><span>3 COLORWAYS · CUT ONCE</span></div>
+      </div>
+      <div class="p-cap"><span class="t">Apparel / Drop poster</span><span class="mono">POSTER — 05</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- APPROACH -->
 <section class="mani" id="approach">
   <div class="wrap">
     <div class="shead rv"><h2>Approach</h2><span class="mono">THE SCHOOL</span></div>
-    <p class="line rv">Photography carries the <em>emotion</em>. Type carries the <em>information</em>. Texture makes it feel <em>printed</em>. <span class="mut">And the small stuff — dates, coordinates, spice levels — makes it feel real.</span></p>
+    <p class="line rv">Photography carries the <em>emotion</em>. Type carries the <em>information</em>. Texture makes it feel <em>printed</em>. <span class="mut">And the small stuff — dates, coordinates, attendance numbers — makes it feel real.</span></p>
     <div class="principles rv">
       <div><span class="n">01 / REAL DATA ONLY</span><p>No lorem ipsum, no fake stats. A poster with the <b>actual attendance number</b> feels like an artifact. Filler feels like a template.</p></div>
       <div><span class="n">02 / SYSTEMS OVER ONE-OFFS</span><p>One good post is luck. <b>Twenty-eight templates and a calendar</b> is a machine the client can run without me — that's what I sell.</p></div>
-      <div><span class="n">03 / GRAIN ALWAYS</span><p>Digital-clean is forbidden. Everything gets <b>texture, contrast, one temperature push</b> — like it came off a press, not out of Canva.</p></div>
-      <div><span class="n">04 / IF IT NEEDS A CAPTION, IT FAILED</span><p>The design explains itself or it dies on the table. <b>Two colors max, one alignment spine,</b> no drop shadows. Ever.</p></div>
+      <div><span class="n">03 / GRAIN ALWAYS</span><p>Digital-clean is forbidden. Everything gets <b>texture, contrast, one temperature push</b> — like it came off a press.</p></div>
+      <div><span class="n">04 / IF IT NEEDS A CAPTION, IT FAILED</span><p>The design explains itself or it dies on the table. <b>Three colors max, one alignment spine,</b> no drop shadows. Ever.</p></div>
     </div>
   </div>
 </section>
 
+<!-- SERVICES -->
 <section class="svc" id="services">
   <div class="wrap">
     <div class="shead rv"><h2>Services</h2><span class="mono">WHAT I DO</span></div>
-    <div class="row rv"><span class="n">S/01</span><span class="t">Social systems</span><p>Full content engines for places people should be talking about — templates, calendar, captions, bio architecture. Built so one person can run it.</p></div>
-    <div class="row rv"><span class="n">S/02</span><span class="t">Posters &amp; campaigns</span><p>Event covers, launch posters, campaign identities. Loud type, real data, print energy — made to be screenshotted and stuck on walls.</p></div>
-    <div class="row rv"><span class="n">S/03</span><span class="t">Matchday graphics</span><p>Sport is my home court. Matchday announcements, stat graphics, schedule posts and season-long visual systems for clubs and federations.</p></div>
-    <div class="row rv"><span class="n">S/04</span><span class="t">Content direction</span><p>What to post, when, and why — the strategy layer under the visuals. Pillars, formats, hooks, and the honest numbers afterwards.</p></div>
+    <div class="row rv"><span class="n">S/01</span><span class="t">Social systems</span><p>Full content engines — templates, calendar, captions, bio architecture. Built so one person can run it.</p></div>
+    <div class="row rv"><span class="n">S/02</span><span class="t">Posters &amp; campaigns</span><p>Event covers, launch posters, campaign identities. Loud type, real data, print energy.</p></div>
+    <div class="row rv"><span class="n">S/03</span><span class="t">Matchday graphics</span><p>Sport is my home court. Matchday announcements, stat graphics, season-long visual systems.</p></div>
+    <div class="row rv"><span class="n">S/04</span><span class="t">Brand books</span><p>Franchise-grade systems: every color, font and rule locked with a business reason attached.</p></div>
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="wrap about">
-    <div class="photo rv b-grain">
+    <div class="photo rv">
       <img src="IMG_7078.JPG" alt="Gerrit Lehe" onerror="this.remove()">
-      <span>[DROP portrait.jpg INTO /assets]</span>
       <span class="cap">SHOT ON LOCATION — TALLINN</span>
     </div>
     <div class="rv">
       <h3>Designer. Baller. <em>Systems guy.</em></h3>
-      <p>I'm Gerrit — 21, Tallinn. I run ShiftLab Studio, produce content for Maison Division, and play basketball, which is where I learned that preparation beats talent and matchday energy is a design language.</p>
-      <p>My lane is the culture side of graphic design: sport, food, music, nightlife, hospitality. The work is photo-led, type-restrained and grainy on purpose — closer to a printed artifact than a social template.</p>
+      <p>I'm Gerrit — 21, Tallinn. I run ShiftLab Studio and play competitive basketball, which is where I learned that preparation beats talent and matchday energy is a design language.</p>
+      <p>My lane is the culture side of graphic design: sport, food, music, nightlife. The work is photo-led, type-restrained and grainy on purpose — closer to a printed artifact than a social template.</p>
       <p>If you run a place, a club or a label and your feed doesn't look like your thing feels — that's exactly the job I want.</p>
     </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="wrap">
     <h2 class="rv">Let's make<br>something <em>loud.</em></h2>
@@ -687,7 +389,7 @@ footer .mono{color:rgba(237,232,223,.55)}
     </div>
     <footer>
       <span class="mono">GERRIT LEHE © 2026 — ALL RIGHTS RESERVED</span>
-      <span class="mono">A <a href="https://shiftlabstudio.com" style="border-bottom:1px solid var(--signal)">SHIFTLAB STUDIO</a> PRODUCTION</span>
+      <span class="mono" id="deploy">CURRENTLY: RAMEN RUSH BRAND SYSTEM</span>
       <span class="mono">DESIGNED &amp; BUILT BY ME. OBVIOUSLY.</span>
     </footer>
   </div>
@@ -697,22 +399,38 @@ footer .mono{color:rgba(237,232,223,.55)}
 // cursor
 const cur=document.getElementById('cur');
 addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
-document.querySelectorAll('a,.board,.svc .row').forEach(el=>{
+document.querySelectorAll('a,.poster,.svc .row').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
 });
-// touch devices: normal cursor
 if(matchMedia('(pointer:coarse)').matches){document.body.style.cursor='auto';cur.style.display='none';}
 // reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-// concept series disclosure — force-reveal newly visible pieces when opened
-document.querySelectorAll('details.concepts-toggle').forEach(d=>{
-  d.addEventListener('toggle',()=>{ if(d.open){ d.querySelectorAll('.rv').forEach(el=>el.classList.add('in')); } });
+// scroll progress
+addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
+// live clock
+setInterval(()=>{const d=new Date();document.getElementById('clock').textContent='TALLINN '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' — OPEN FOR WORK'},1000);
+// poster tilt
+document.querySelectorAll('.tilt').forEach(p=>{
+  p.addEventListener('mousemove',e=>{
+    const r=p.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    p.style.transform='perspective(1100px) rotateY('+(x*5)+'deg) rotateX('+(-y*5)+'deg) scale(1.012)';
+  });
+  p.addEventListener('mouseleave',()=>{p.style.transform='perspective(1100px) rotateY(0) rotateX(0) scale(1)'});
 });
-// psst
-console.log('%cSTILL HERE?','font-family:monospace;font-size:20px;font-weight:bold;color:#FF3B00');
-console.log('%cyou opened devtools on a design portfolio. respect.\\nwant this built for real? gerrit@shiftlabstudio.com','font-family:monospace;font-size:12px;color:#EDE8DF');
+// easter egg 1: type "ramen"
+let buf='';
+addEventListener('keydown',e=>{
+  buf=(buf+e.key.toLowerCase()).slice(-5);
+  if(buf==='ramen'){for(let i=0;i<24;i++){const n=document.createElement('div');n.className='noodle';n.textContent='🍜';n.style.left=Math.random()*100+'vw';n.style.animationDuration=(2+Math.random()*2)+'s';n.style.animationDelay=(Math.random()*0.8)+'s';document.body.appendChild(n);setTimeout(()=>n.remove(),4500)}buf='';}
+});
+// easter egg 2: click logo 5x -> capy mode
+let clicks=0;document.getElementById('logoBtn').addEventListener('click',()=>{clicks++;if(clicks>=5){document.body.classList.toggle('capy');clicks=0;}});
+// console egg
+console.log('%cGERRIT LEHE©','font-size:28px;font-weight:900;color:#FF3B00');
+console.log('You found the basement. Type "ramen" on the site, or email gerrit@shiftlabstudio.com with the word NOODLE for a sticker.');
 </script>
 </body>
 </html>
