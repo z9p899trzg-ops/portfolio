@@ -94,69 +94,108 @@ section{padding:13vh 0 5vh}
 .rr-strip a{display:block;border:1px solid rgba(237,232,223,.15);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 .rr-strip a:hover{transform:translateY(-6px) rotate(-.5deg)}
 
-/* POSTERS */
-.poster-block{margin:0 auto 11vh;max-width:880px}
-.poster-block.wide{max-width:1060px}
-.poster{position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1);will-change:transform}
-.p-cap{display:flex;justify-content:space-between;margin-top:14px}
-.p-cap .t{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:15px}
-.p-cap .mono{color:rgba(237,232,223,.55)}
+/* POSTERS — the pile */
+.deck-wrap{max-width:760px;margin:0 auto}
+.deck{position:relative;height:min(82vh,720px)}
+.card{position:absolute;left:50%;top:50%;width:min(520px,84vw);aspect-ratio:4/5;container-type:inline-size;overflow:hidden;box-shadow:0 26px 70px rgba(0,0,0,.6);transform:translate(-50%,-50%) rotate(var(--r,0deg)) translateY(var(--y,0px)) scale(var(--s,1));transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .45s;will-change:transform}
+.card.fly{transform:translate(38%,-70%) rotate(17deg) scale(1.02);opacity:0}
+.deck-ui{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:20px;border-top:1px solid rgba(237,232,223,.2);padding-top:14px}
+.deck-ui .btn{background:none;border:1px solid rgba(237,232,223,.35);color:var(--paper);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:11px 18px;cursor:none;transition:background .2s,border-color .2s}
+.deck-ui .btn:hover{background:var(--signal);border-color:var(--signal)}
+.deck-ui .mid{text-align:center}
+.deck-ui .title{display:block;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:14px}
+.deck-ui .idx{color:var(--signal)}
+.deck-hint{text-align:center;margin-top:12px;color:rgba(237,232,223,.45)}
+
+/* photo-depth layers */
+.crowd{position:absolute;left:-4%;right:-4%;bottom:-2%;height:42%;filter:blur(6px);opacity:.8;background:
+ radial-gradient(circle at 6% 62%,rgba(237,232,223,.30) 0 7px,transparent 8px),
+ radial-gradient(circle at 15% 78%,rgba(255,59,0,.34) 0 5px,transparent 6px),
+ radial-gradient(circle at 24% 58%,rgba(237,232,223,.22) 0 9px,transparent 10px),
+ radial-gradient(circle at 33% 74%,rgba(237,232,223,.30) 0 6px,transparent 7px),
+ radial-gradient(circle at 41% 60%,rgba(255,59,0,.25) 0 7px,transparent 8px),
+ radial-gradient(circle at 52% 80%,rgba(237,232,223,.32) 0 8px,transparent 9px),
+ radial-gradient(circle at 63% 64%,rgba(237,232,223,.20) 0 6px,transparent 7px),
+ radial-gradient(circle at 72% 76%,rgba(255,59,0,.30) 0 6px,transparent 7px),
+ radial-gradient(circle at 83% 58%,rgba(237,232,223,.28) 0 8px,transparent 9px),
+ radial-gradient(circle at 93% 72%,rgba(237,232,223,.24) 0 6px,transparent 7px);
+ -webkit-mask-image:linear-gradient(180deg,transparent,#000 40%);mask-image:linear-gradient(180deg,transparent,#000 40%)}
+.smoke{position:absolute;inset:auto -10% -12% -10%;height:60%;opacity:.55;filter:blur(2px);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='300'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.03' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 0.35  0 0 0 0 0.1  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='500' height='300' filter='url(%23s)'/%3E%3C/svg%3E");background-size:cover;-webkit-mask-image:linear-gradient(180deg,transparent,#000 55%);mask-image:linear-gradient(180deg,transparent,#000 55%)}
+.flare{position:absolute;left:8%;bottom:6%;width:44%;aspect-ratio:2/1;background:radial-gradient(ellipse at 30% 80%,rgba(255,59,0,.75),rgba(255,59,0,.18) 45%,transparent 70%);filter:blur(10px)}
+.hoop{position:absolute;right:6%;top:9%;width:30%;opacity:.5}
+.dawn{position:absolute;left:0;right:0;top:34%;height:34%;background:linear-gradient(180deg,transparent,rgba(255,59,0,.20) 35%,rgba(255,59,0,.42) 62%,rgba(17,17,16,.18));-webkit-mask-image:linear-gradient(180deg,transparent,#000 25%,#000 75%,transparent);mask-image:linear-gradient(180deg,transparent,#000 25%,#000 75%,transparent)}
+.sun{position:absolute;left:50%;top:41%;width:24cqw;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,59,0,.95),rgba(255,59,0,.5) 55%,transparent 72%);filter:blur(1px)}
+.skyline{position:absolute;left:0;right:0;bottom:0;height:22%;opacity:.92;background:
+ radial-gradient(circle at 8% 100%,#111110 0 9%,transparent 10%),
+ radial-gradient(circle at 20% 100%,#111110 0 12%,transparent 13%),
+ radial-gradient(circle at 33% 100%,#111110 0 8%,transparent 9%),
+ radial-gradient(circle at 46% 100%,#111110 0 13%,transparent 14%),
+ radial-gradient(circle at 60% 100%,#111110 0 9%,transparent 10%),
+ radial-gradient(circle at 73% 100%,#111110 0 12%,transparent 13%),
+ radial-gradient(circle at 87% 100%,#111110 0 10%,transparent 11%),
+ linear-gradient(180deg,transparent 40%,#111110 72%)}
+.halfball{position:absolute;left:50%;top:47%;width:64cqw;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;opacity:.16;background-image:radial-gradient(circle,#111110 1.3px,transparent 1.6px);background-size:7px 7px;-webkit-mask-image:radial-gradient(circle at 38% 32%,#000 40%,transparent 72%);mask-image:radial-gradient(circle at 38% 32%,#000 40%,transparent 72%)}
+.weave{position:absolute;inset:0;opacity:.5;background:
+ repeating-linear-gradient(45deg,rgba(17,17,16,.045) 0 2px,transparent 2px 6px),
+ repeating-linear-gradient(-45deg,rgba(17,17,16,.045) 0 2px,transparent 2px 6px)}
+.fold{position:absolute;left:-10%;top:18%;width:70%;height:50%;background:radial-gradient(ellipse,rgba(17,17,16,.10),transparent 65%);filter:blur(14px);transform:rotate(-14deg)}
+.fold.f2{left:auto;right:-12%;top:40%;transform:rotate(10deg);background:radial-gradient(ellipse,rgba(255,255,255,.5),transparent 60%)}
 .pg::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
 
 /* P1 FINAL NIGHT */
-.p1{aspect-ratio:4/5;background:#0B0B0A;padding:7%}
+.p1{background:#0B0B0A;padding:7%}
 .p1 .beam{position:absolute;top:-30%;left:18%;width:34%;height:130%;background:linear-gradient(180deg,rgba(237,232,223,.13),transparent 70%);transform:rotate(18deg)}
 .p1 .beam.b2{left:52%;transform:rotate(-14deg);opacity:.7}
-.p1 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,223,.8);position:relative}
-.p1 .clock{position:relative;margin-top:10%;font-family:'Anton',sans-serif;font-size:clamp(110px,24vw,260px);line-height:.85;color:transparent;-webkit-text-stroke:2.5px var(--paper);letter-spacing:.01em}
+.p1 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,2cqw,11px);letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,223,.8);position:relative}
+.p1 .clock{position:relative;margin-top:10%;font-family:'Anton',sans-serif;font-size:26cqw;line-height:.85;color:transparent;-webkit-text-stroke:2px var(--paper);letter-spacing:.01em}
 .p1 .clock b{color:var(--signal);-webkit-text-stroke:0}
-.p1 .line{position:relative;font-family:'Archivo Black',sans-serif;text-transform:uppercase;color:var(--paper);font-size:clamp(20px,3.4vw,38px);line-height:1.05;margin-top:7%}
+.p1 .line{position:relative;font-family:'Archivo Black',sans-serif;text-transform:uppercase;color:var(--paper);font-size:6.6cqw;line-height:1.05;margin-top:7%}
 .p1 .line em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;color:var(--signal)}
-.p1 .foot{position:absolute;left:7%;right:7%;bottom:6%;border-top:1px solid rgba(237,232,223,.3);padding-top:2.5%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.8)}
+.p1 .foot{position:absolute;left:7%;right:7%;bottom:6%;border-top:1px solid rgba(237,232,223,.3);padding-top:2.5%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,1.9cqw,11px);letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.8)}
 
 /* P2 90+4 */
-.p2{aspect-ratio:4/5;background:#0D0D0C;padding:7%}
+.p2{background:#0D0D0C;padding:7%}
 .p2 .pitch{position:absolute;inset:0;opacity:.16}
 .p2 .pitch .c{position:absolute;left:-22%;top:18%;width:74%;aspect-ratio:1;border:2px solid var(--paper);border-radius:50%}
 .p2 .pitch .l1{position:absolute;left:0;right:0;top:52%;height:2px;background:var(--paper)}
 .p2 .pitch .box{position:absolute;right:-8%;bottom:8%;width:44%;height:30%;border:2px solid var(--paper)}
-.p2 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,223,.8);position:relative}
-.p2 .num{position:relative;margin-top:8%;font-family:'Anton',sans-serif;font-size:clamp(120px,26vw,290px);line-height:.82;color:var(--signal)}
+.p2 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,2cqw,11px);letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,223,.8);position:relative}
+.p2 .num{position:relative;margin-top:8%;font-family:'Anton',sans-serif;font-size:27cqw;line-height:.82;color:var(--signal)}
 .p2 .num small{display:block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:.16em;color:var(--paper);margin-top:5%;letter-spacing:.02em}
-.p2 .foot{position:absolute;left:7%;right:7%;bottom:6%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.8)}
+.p2 .foot{position:absolute;left:7%;right:7%;bottom:6%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,1.9cqw,11px);letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,223,.8)}
 
 /* P3 FESTIVAL */
-.p3{aspect-ratio:4/5;background:var(--paper);color:var(--ink);padding:7%}
+.p3{background:var(--paper);color:var(--ink);padding:7%}
 .p3 .beam{position:absolute;bottom:-20%;left:8%;width:26%;height:110%;background:linear-gradient(0deg,rgba(255,59,0,.16),transparent 75%);transform:rotate(-16deg)}
 .p3 .beam.b2{left:auto;right:8%;transform:rotate(16deg)}
-.p3 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;position:relative}
-.p3 h4{position:relative;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(46px,8.5vw,96px);line-height:.95;margin-top:7%}
+.p3 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,2cqw,11px);letter-spacing:.12em;text-transform:uppercase;position:relative}
+.p3 h4{position:relative;font-family:'Instrument Serif',serif;font-weight:400;font-size:13cqw;line-height:.95;margin-top:7%}
 .p3 h4 em{font-style:italic;color:var(--signal)}
 .p3 .lineup{position:relative;margin-top:7%;border-top:2px solid var(--ink)}
-.p3 .lineup div{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(17,17,16,.3)}
-.p3 .lineup b{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(13px,1.7vw,19px)}
-.p3 .lineup span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em}
-.p3 .foot{position:absolute;left:7%;right:7%;bottom:6%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.p3 .lineup div{display:flex;justify-content:space-between;align-items:baseline;padding:2.2% 0;border-bottom:1px solid rgba(17,17,16,.3)}
+.p3 .lineup b{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:3.6cqw}
+.p3 .lineup span{font-family:'Space Mono',monospace;font-size:clamp(8px,1.9cqw,11px);letter-spacing:.08em}
+.p3 .foot{position:absolute;left:7%;right:7%;bottom:6%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,1.9cqw,11px);letter-spacing:.1em;text-transform:uppercase}
 
 /* P4 MARCH */
-.p4{aspect-ratio:4/5;background:var(--paper);color:var(--ink);padding:7%}
+.p4{background:var(--paper);color:var(--ink);padding:7%}
 .p4 .bl,.p4 .br{position:absolute;top:16%;bottom:26%;width:16%;opacity:.8}
 .p4 .bl{left:7%;border-right:2px solid var(--ink)}
 .p4 .br{right:7%;border-left:2px solid var(--ink)}
 .p4 .bl i,.p4 .br i{position:absolute;left:0;right:0;height:2px;background:var(--ink)}
-.p4 .mid{position:absolute;left:50%;top:47%;width:14px;height:14px;background:var(--signal);border-radius:50%;transform:translateX(-50%)}
-.p4 h4{position:relative;text-align:center;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(70px,15vw,170px);line-height:.9;margin-top:16%}
-.p4 .sub2{position:relative;text-align:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(17px,2.4vw,26px);margin-top:4%}
-.p4 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;position:relative}
-.p4 .foot{position:absolute;left:7%;right:7%;bottom:6%;border-top:2px solid var(--ink);padding-top:2.5%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.p4 .mid{position:absolute;left:50%;top:47%;width:2.6cqw;height:2.6cqw;background:var(--signal);border-radius:50%;transform:translateX(-50%)}
+.p4 h4{position:relative;text-align:center;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:24cqw;line-height:.9;margin-top:16%}
+.p4 .sub2{position:relative;text-align:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:4.4cqw;margin-top:4%}
+.p4 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,2cqw,11px);letter-spacing:.12em;text-transform:uppercase;position:relative}
+.p4 .foot{position:absolute;left:7%;right:7%;bottom:6%;border-top:2px solid var(--ink);padding-top:2.5%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,1.9cqw,11px);letter-spacing:.1em;text-transform:uppercase}
 
 /* P5 SOFT GOODS */
-.p5{aspect-ratio:16/10;background:var(--paper);color:var(--paper2);padding:6%}
-.p5 h4{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(64px,11vw,150px);line-height:.92;color:#CFC5AE;letter-spacing:-.01em}
+.p5{background:var(--paper);color:var(--paper2);padding:7%}
+.p5 h4{font-family:'Instrument Serif',serif;font-weight:400;font-size:15cqw;line-height:.92;color:#CFC5AE;letter-spacing:-.01em;margin-top:22%}
 .p5 h4 em{font-style:italic;color:var(--signal)}
-.p5 .thread{position:absolute;left:6%;right:6%;bottom:22%;height:2px;background:var(--signal)}
-.p5 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#9d937c}
-.p5 .foot{position:absolute;left:6%;right:6%;bottom:8%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9d937c}
+.p5 .thread{position:absolute;left:7%;right:7%;bottom:26%;height:2px;background:var(--signal)}
+.p5 .top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,2cqw,11px);letter-spacing:.12em;text-transform:uppercase;color:#9d937c}
+.p5 .foot{position:absolute;left:7%;right:7%;bottom:8%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,1.9cqw,11px);letter-spacing:.1em;text-transform:uppercase;color:#9d937c}
 
 /* APPROACH / SERVICES / ABOUT / CONTACT */
 .mani .line{font-size:clamp(28px,4.6vw,64px);line-height:1.12;font-weight:500;max-width:1200px}
@@ -238,7 +277,7 @@ body.capy{--signal:#F3B8C6}
 <!-- WORK -->
 <section id="work">
   <div class="wrap">
-    <div class="shead rv"><h2>Live Client Work</h2><span class="mono">RAMEN RUSH — 2026</span></div>
+    <div class="shead rv"><h2>Client Work</h2><span class="mono">RAMEN RUSH — IN PROGRESS · 2026</span></div>
     <div class="case rv">
       <div>
         <div class="rr-hero"><img src="work/rr-kaas.png" alt="Ramen Rush cover design" loading="lazy"></div>
@@ -251,10 +290,10 @@ body.capy{--signal:#F3B8C6}
       </div>
       <div class="info">
         <h3>Ramen Rush — <em>a social system, not posts.</em></h3>
-        <div class="tags"><span class="tag live">LIVE CLIENT</span><span class="tag">Brand system</span><span class="tag">28 templates</span><span class="tag">Franchise-ready</span></div>
+        <div class="tags"><span class="tag live">IN PROGRESS</span><span class="tag">Brand system</span><span class="tag">28 templates</span><span class="tag">Franchise-ready</span></div>
         <div class="story">
           <div class="row"><span class="k">Problem</span><p>Estonia's first self-serve ramen bar — 70+ ramens, build-your-own bowls, spice levels 1–10 — and a feed that told none of it. Two posts. Nobody knew how the place worked.</p></div>
-          <div class="row"><span class="k">System</span><p>28 post templates on a locked color logic, 30-day calendar with ready captions, Facebook kit, loyalty mechanics, a brand book built for franchising. Cold DM → owner meeting → ongoing partnership.</p></div>
+          <div class="row"><span class="k">System</span><p>28 post templates on a locked color logic, 30-day calendar with ready captions, Facebook kit, loyalty mechanics, a brand book built for franchising. Cold DM → owner meeting → building it together. Ink pending, work shipping.</p></div>
           <div class="row"><span class="k">Result</span><p>The account came alive within two weeks — and the brand now has rails any future location can run on.</p></div>
         </div>
         <div class="metrics">
@@ -271,66 +310,63 @@ body.capy{--signal:#F3B8C6}
 <!-- POSTERS -->
 <section id="posters">
   <div class="wrap">
-    <div class="shead rv"><h2>Poster Work</h2><span class="mono">SELF-INITIATED — BIG STAGE ENERGY</span></div>
+    <div class="shead rv"><h2>Poster Work</h2><span class="mono">SELF-INITIATED — FLIP THE PILE</span></div>
 
-    <div class="poster-block rv">
-      <div class="poster pg p1 tilt">
-        <div class="beam"></div><div class="beam b2"></div>
-        <div class="top"><span>GAME 7 — FINALS</span><span>ONE NIGHT ONLY</span></div>
-        <div class="clock">48<b>:</b>00</div>
-        <div class="line">Forty-eight minutes<br>for <em>everything.</em></div>
-        <div class="foot"><span>ATT. 19,812 — SOLD OUT</span><span>TIP-OFF 21:00</span><span>06.2026</span></div>
-      </div>
-      <div class="p-cap"><span class="t">Basketball / Finals night</span><span class="mono">POSTER — 01</span></div>
-    </div>
-
-    <div class="poster-block rv">
-      <div class="poster pg p2 tilt">
-        <div class="pitch"><span class="c"></span><span class="l1"></span><span class="box"></span></div>
-        <div class="top"><span>CUP FINAL</span><span>FULL TIME NEVER CAME</span></div>
-        <div class="num">90+4′<small>nobody leaves. nobody breathes.</small></div>
-        <div class="foot"><span>STOPPAGE TIME</span><span>1–1 · AGG. 2–2</span><span>07.2026</span></div>
-      </div>
-      <div class="p-cap"><span class="t">Football / Stoppage time</span><span class="mono">POSTER — 02</span></div>
-    </div>
-
-    <div class="poster-block rv">
-      <div class="poster pg p3 tilt">
-        <div class="beam"></div><div class="beam b2"></div>
-        <div class="top"><span>TWO STAGES — ONE SUNRISE</span><span>VOL. III</span></div>
-        <h4>Sound check<br>at <em>dawn.</em></h4>
-        <div class="lineup">
-          <div><b>Night Bureau</b><span>23:00 — MAIN</span></div>
-          <div><b>Velvet Static</b><span>01:00 — MAIN</span></div>
-          <div><b>Marta Kivi</b><span>02:30 — GARDEN</span></div>
-          <div><b>Secret guest</b><span>04:44 — ROOF</span></div>
+    <div class="deck-wrap rv">
+      <div class="deck" id="deck">
+        <div class="card pg p1" data-t="Basketball / Finals night">
+          <div class="beam"></div><div class="beam b2"></div>
+          <div class="crowd"></div>
+          <svg class="hoop" viewBox="0 0 120 100" fill="none"><rect x="20" y="4" width="80" height="52" stroke="#EDE8DF" stroke-width="3" opacity=".8"/><rect x="47" y="30" width="26" height="20" stroke="#EDE8DF" stroke-width="2.4" opacity=".8"/><line x1="38" y1="56" x2="82" y2="56" stroke="#FF3B00" stroke-width="4"/><path d="M40 56 L46 78 M50 56 L53 78 M60 56 L60 78 M70 56 L67 78 M80 56 L74 78 M40 56 L53 78 M50 56 L60 78 M60 56 L67 78 M70 56 L74 78" stroke="#EDE8DF" stroke-width="1.1" opacity=".7"/></svg>
+          <div class="top"><span>GAME 7 — FINALS</span><span>ONE NIGHT ONLY</span></div>
+          <div class="clock">48<b>:</b>00</div>
+          <div class="line">Forty-eight minutes<br>for <em>everything.</em></div>
+          <div class="foot"><span>ATT. 19,812 — SOLD OUT</span><span>TIP-OFF 21:00</span><span>06.2026</span></div>
         </div>
-        <div class="foot"><span>GATES 21:00 · 18+</span><span>TALLINN HARBOUR</span></div>
+        <div class="card pg p2" data-t="Football / Stoppage time">
+          <div class="pitch"><span class="c"></span><span class="l1"></span><span class="box"></span></div>
+          <div class="smoke"></div><div class="flare"></div><div class="crowd" style="height:30%;opacity:.5"></div>
+          <div class="top"><span>CUP FINAL</span><span>FULL TIME NEVER CAME</span></div>
+          <div class="num">90+4′<small>nobody leaves. nobody breathes.</small></div>
+          <div class="foot"><span>STOPPAGE TIME</span><span>1–1 · AGG. 2–2</span><span>07.2026</span></div>
+        </div>
+        <div class="card pg p3" data-t="Festival / Lineup poster">
+          <div class="dawn"></div><div class="sun"></div><div class="skyline"></div>
+          <div class="beam"></div><div class="beam b2"></div>
+          <div class="top"><span>TWO STAGES — ONE SUNRISE</span><span>VOL. III</span></div>
+          <h4>Sound check<br>at <em>dawn.</em></h4>
+          <div class="lineup">
+            <div><b>Night Bureau</b><span>23:00 — MAIN</span></div>
+            <div><b>Velvet Static</b><span>01:00 — MAIN</span></div>
+            <div><b>Marta Kivi</b><span>02:30 — GARDEN</span></div>
+            <div><b>Secret guest</b><span>04:44 — ROOF</span></div>
+          </div>
+          <div class="foot"><span>GATES 21:00 · 18+</span><span>TALLINN HARBOUR</span></div>
+        </div>
+        <div class="card pg p4" data-t="College basketball / Bracket">
+          <div class="top"><span>68 TEAMS — 67 GAMES</span><span>ONE NET</span></div>
+          <div class="halfball"></div>
+          <div class="bl"><i style="top:0"></i><i style="top:33%"></i><i style="top:66%"></i><i style="bottom:0"></i></div>
+          <div class="br"><i style="top:0"></i><i style="top:33%"></i><i style="top:66%"></i><i style="bottom:0"></i></div>
+          <div class="mid"></div>
+          <h4>March.</h4>
+          <div class="sub2">sixty-eight dreams enter. one cuts the net.</div>
+          <div class="foot"><span>SELECTION SUNDAY 03.2026</span><span>WIN OR GO HOME</span></div>
+        </div>
+        <div class="card pg p5" data-t="Apparel / Drop poster">
+          <div class="weave"></div><div class="fold"></div><div class="fold f2"></div>
+          <div class="top"><span>ESSENTIALS — DROP 01</span><span>RESTOCK NEVER</span></div>
+          <h4>soft goods,<br><em>hard sellout.</em></h4>
+          <div class="thread"></div>
+          <div class="foot"><span>HEAVYWEIGHT 480 GSM</span><span>3 COLORWAYS · CUT ONCE</span></div>
+        </div>
       </div>
-      <div class="p-cap"><span class="t">Festival / Lineup poster</span><span class="mono">POSTER — 03</span></div>
-    </div>
-
-    <div class="poster-block rv">
-      <div class="poster pg p4 tilt">
-        <div class="top"><span>68 TEAMS — 67 GAMES</span><span>ONE NET</span></div>
-        <div class="bl"><i style="top:0"></i><i style="top:33%"></i><i style="top:66%"></i><i style="bottom:0"></i></div>
-        <div class="br"><i style="top:0"></i><i style="top:33%"></i><i style="top:66%"></i><i style="bottom:0"></i></div>
-        <div class="mid"></div>
-        <h4>March.</h4>
-        <div class="sub2">sixty-eight dreams enter. one cuts the net.</div>
-        <div class="foot"><span>SELECTION SUNDAY 03.2026</span><span>WIN OR GO HOME</span></div>
+      <div class="deck-ui">
+        <button class="btn" id="dPrev" aria-label="Previous poster">← PREV</button>
+        <div class="mid"><span class="title" id="dTitle">Basketball / Finals night</span><span class="mono"><span class="idx" id="dIdx">01</span> / 05</span></div>
+        <button class="btn" id="dNext" aria-label="Next poster">NEXT →</button>
       </div>
-      <div class="p-cap"><span class="t">College basketball / Bracket</span><span class="mono">POSTER — 04</span></div>
-    </div>
-
-    <div class="poster-block wide rv">
-      <div class="poster pg p5 tilt">
-        <div class="top"><span>ESSENTIALS — DROP 01</span><span>RESTOCK NEVER</span></div>
-        <h4 style="margin-top:5%">soft goods,<br><em>hard sellout.</em></h4>
-        <div class="thread"></div>
-        <div class="foot"><span>HEAVYWEIGHT 480 GSM</span><span>3 COLORWAYS · CUT ONCE</span></div>
-      </div>
-      <div class="p-cap"><span class="t">Apparel / Drop poster</span><span class="mono">POSTER — 05</span></div>
+      <div class="deck-hint mono">CLICK THE PILE · ARROW KEYS · SWIPE</div>
     </div>
 
   </div>
@@ -399,7 +435,7 @@ body.capy{--signal:#F3B8C6}
 // cursor
 const cur=document.getElementById('cur');
 addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
-document.querySelectorAll('a,.poster,.svc .row').forEach(el=>{
+document.querySelectorAll('a,.card,.deck-ui .btn,.svc .row').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
 });
@@ -411,15 +447,38 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
 // live clock
 setInterval(()=>{const d=new Date();document.getElementById('clock').textContent='TALLINN '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' — OPEN FOR WORK'},1000);
-// poster tilt
-document.querySelectorAll('.tilt').forEach(p=>{
-  p.addEventListener('mousemove',e=>{
-    const r=p.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-    p.style.transform='perspective(1100px) rotateY('+(x*5)+'deg) rotateX('+(-y*5)+'deg) scale(1.012)';
-  });
-  p.addEventListener('mouseleave',()=>{p.style.transform='perspective(1100px) rotateY(0) rotateX(0) scale(1)'});
-});
+// poster deck
+const deckEl=document.getElementById('deck');
+if(deckEl){
+  const cards=[...deckEl.querySelectorAll('.card')];
+  const rots=[0,-2.6,2.1,-1.5,1.3];
+  let order=cards.map((_,i)=>i), busy=false;
+  const tEl=document.getElementById('dTitle'), iEl=document.getElementById('dIdx');
+  function apply(){
+    order.forEach((ci,i)=>{const c=cards[ci];
+      c.style.zIndex=60-i;
+      c.style.setProperty('--r',rots[i%rots.length]+'deg');
+      c.style.setProperty('--y',(i*12)+'px');
+      c.style.setProperty('--s',String(1-i*0.035));
+    });
+    tEl.textContent=cards[order[0]].dataset.t;
+    iEl.textContent=String(order[0]+1).padStart(2,'0');
+  }
+  function next(){if(busy)return;busy=true;const c=cards[order[0]];c.classList.add('fly');
+    setTimeout(()=>{order.push(order.shift());apply();requestAnimationFrame(()=>requestAnimationFrame(()=>c.classList.remove('fly')));setTimeout(()=>busy=false,80)},430);}
+  function prev(){if(busy)return;busy=true;order.unshift(order.pop());const c=cards[order[0]];
+    c.classList.add('fly');apply();
+    requestAnimationFrame(()=>requestAnimationFrame(()=>c.classList.remove('fly')));
+    setTimeout(()=>busy=false,560);}
+  deckEl.addEventListener('click',next);
+  document.getElementById('dNext').addEventListener('click',e=>{e.stopPropagation();next()});
+  document.getElementById('dPrev').addEventListener('click',e=>{e.stopPropagation();prev()});
+  addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});
+  let tx=null;
+  deckEl.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+  deckEl.addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(d<-40)next();else if(d>40)prev();tx=null},{passive:true});
+  apply();
+}
 // easter egg 1: type "ramen"
 let buf='';
 addEventListener('keydown',e=>{
