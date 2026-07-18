@@ -28,9 +28,26 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 animation:grain 8s steps(10) infinite}
 @keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-2%,2%)}40%{transform:translate(2%,-1%)}60%{transform:translate(-1%,-2%)}80%{transform:translate(1%,1%)}}
 
-#cur{position:fixed;width:12px;height:12px;background:var(--signal);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .18s,height .18s,background .18s;mix-blend-mode:difference}
+#cur{position:fixed;width:12px;height:12px;background:var(--signal);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .18s,height .18s,background .18s;mix-blend-mode:difference;display:flex;align-items:center;justify-content:center}
 body.hovering #cur{width:46px;height:46px;background:var(--paper)}
+#cur span{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.08em;color:var(--ink);opacity:0;white-space:nowrap}
+body.curlbl #cur{width:56px;height:56px;background:var(--signal);mix-blend-mode:normal}
+body.curlbl #cur span{opacity:1;color:var(--paper)}
 #bar{position:fixed;top:0;left:0;height:3px;background:var(--signal);z-index:10001;width:0}
+/* ava-tempel */
+#stamp{position:fixed;inset:0;z-index:10002;background:var(--ink);display:flex;align-items:center;justify-content:center;pointer-events:none}
+#stamp .s{border:6px solid var(--signal);color:var(--paper);font-family:'Archivo Black',sans-serif;font-size:clamp(60px,12vw,140px);padding:.05em .35em;transform:rotate(-8deg) scale(3);opacity:0;letter-spacing:-.01em}
+#stamp.go .s{animation:slam .5s cubic-bezier(.2,.9,.3,1) forwards}
+#stamp.done{animation:stampout .35s .75s forwards}
+@keyframes slam{to{transform:rotate(-8deg) scale(1);opacity:1}}
+@keyframes stampout{to{opacity:0;visibility:hidden}}
+/* öövahetus */
+body.night{--signal:#D63300}
+/* CRT egg */
+#crt{position:fixed;inset:0;z-index:10003;pointer-events:none;opacity:0;transition:opacity .3s;background:repeating-linear-gradient(0deg,rgba(0,0,0,.35) 0 2px,transparent 2px 4px),radial-gradient(ellipse at center,transparent 55%,rgba(0,40,0,.5));mix-blend-mode:multiply}
+body.crt #crt{opacity:1;animation:flick .12s steps(2) infinite}
+body.crt{filter:sepia(.35) hue-rotate(55deg) contrast(1.15)}
+@keyframes flick{50%{opacity:.85}}
 
 .mono{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
 .serif{font-family:'Instrument Serif',serif}
@@ -65,7 +82,13 @@ section{scroll-margin-top:84px}
 @media(prefers-reduced-motion:reduce){body::after{animation:none}.rv{transition:none;opacity:1;transform:none}.marquee .track{animation:none}.card{transition:none}}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5vw 4vh;position:relative}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5vw 4vh;position:relative;overflow:hidden}
+.hero-poster{position:absolute;right:-4vw;top:9vh;width:min(400px,34vw);opacity:.9;filter:brightness(.72) saturate(.95);pointer-events:none;-webkit-mask-image:linear-gradient(100deg,transparent 0,#000 22%);mask-image:linear-gradient(100deg,transparent 0,#000 22%)}
+.hero-poster .card{position:static!important;transform:rotate(4deg)!important;width:100%!important;box-shadow:0 30px 90px rgba(0,0,0,.65)}
+.hero-poster .back{display:none}
+.hero .potd{margin-top:8px;display:inline-block;border-bottom:1px solid var(--signal)}
+.hero .potd:hover{color:var(--signal)}
+@media(max-width:900px){.hero-poster{width:52vw;opacity:.35;top:6vh}}
 .hero .meta-top{position:absolute;top:92px;left:5vw;right:5vw;display:flex;justify-content:space-between;opacity:.75}
 h1{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:clamp(64px,14.5vw,230px);line-height:.86;letter-spacing:-.015em}
 h1 .row{display:block}
@@ -113,8 +136,17 @@ section{padding:13vh 0 5vh}
 /* POSTERS — the pile */
 .deck-wrap{max-width:760px;margin:0 auto}
 .deck{position:relative;height:min(82vh,720px)}
-.card{position:absolute;left:50%;top:50%;width:min(520px,84vw);aspect-ratio:4/5;container-type:inline-size;overflow:hidden;box-shadow:0 26px 70px rgba(0,0,0,.6);transform:translate(-50%,-50%) rotate(var(--r,0deg)) translateY(var(--y,0px)) scale(var(--s,1));transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .45s;will-change:transform}
+.card{position:absolute;left:50%;top:50%;width:min(520px,84vw);aspect-ratio:4/5;container-type:inline-size;overflow:hidden;box-shadow:0 26px 70px rgba(0,0,0,.6);transform:translate(-50%,-50%) rotate(var(--r,0deg)) translateY(var(--y,0px)) scale(var(--s,1)) rotateY(var(--f,0deg));transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .45s;will-change:transform;transform-style:preserve-3d}
 .card.fly{transform:translate(38%,-70%) rotate(17deg) scale(1.02);opacity:0}
+.card.flipped{--f:180deg}
+.card>*:not(.back){backface-visibility:hidden}
+.card .back{position:absolute;inset:0;background:var(--ink);color:var(--paper);transform:rotateY(180deg);backface-visibility:hidden;padding:8%;display:flex;flex-direction:column}
+.card .back .bh{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,2cqw,11px);letter-spacing:.12em;text-transform:uppercase;color:var(--signal)}
+.card .back h5{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:7cqw;line-height:1;margin:7% 0 4%}
+.card .back .rows{flex:1;display:flex;flex-direction:column;justify-content:center}
+.card .back .rows div{display:flex;justify-content:space-between;padding:3.2% 0;border-bottom:1px solid rgba(237,232,223,.2);font-family:'Space Mono',monospace;font-size:clamp(8px,2.2cqw,12px);letter-spacing:.08em;text-transform:uppercase}
+.card .back .rows span:last-child{color:var(--signal);text-align:right}
+.card .back .bs{align-self:flex-start;border:3px solid var(--signal);color:var(--signal);font-family:'Archivo Black',sans-serif;font-size:3.4cqw;padding:1.5% 3.5%;transform:rotate(-6deg);text-transform:uppercase}
 .deck-ui{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:20px;border-top:1px solid rgba(237,232,223,.2);padding-top:14px}
 .deck-ui .btn{background:none;border:1px solid rgba(237,232,223,.35);color:var(--paper);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:11px 18px;cursor:none;transition:background .2s,border-color .2s}
 .deck-ui .btn:hover{background:var(--signal);border-color:var(--signal)}
@@ -255,7 +287,9 @@ body.capy{--signal:#F3B8C6}
 </style>
 </head>
 <body>
-<div id="cur"></div><div id="bar"></div>
+<div id="cur"><span id="curT"></span></div><div id="bar"></div>
+<div id="stamp"><div class="s">GL©</div></div>
+<div id="crt"></div>
 
 <nav>
   <a class="logo" href="#top" id="logoBtn">GERRIT LEHE©</a>
@@ -270,6 +304,7 @@ body.capy{--signal:#F3B8C6}
 </nav>
 
 <header class="hero" id="top">
+  <div class="hero-poster" id="heroPoster" aria-hidden="true"></div>
   <div class="meta-top mono">
     <span>GRAPHIC DESIGNER — CONTENT SYSTEMS</span>
     <span>TALLINN, ESTONIA</span>
@@ -280,7 +315,7 @@ body.capy{--signal:#F3B8C6}
   </h1>
   <div class="sub rv">
     <p>I design the things people actually see — posters, social systems, matchday graphics. Type carries the information, photography carries the emotion, grain makes it feel printed.</p>
-    <div class="coords mono">59.4370°N, 24.7536°E<br>SHIFTLAB STUDIO · @GERRITLEHE<br><a href="mailto:gerrit@shiftlabstudio.com">GERRIT@SHIFTLABSTUDIO.COM</a></div>
+    <div class="coords mono">59.4370°N, 24.7536°E<br>SHIFTLAB STUDIO · @GERRITLEHE<br><a href="mailto:gerrit@shiftlabstudio.com">GERRIT@SHIFTLABSTUDIO.COM</a><br><a class="potd" href="#posters" id="potdLink">POSTER OF THE DAY — 01/05 ↓</a></div>
   </div>
 </header>
 
@@ -339,6 +374,7 @@ body.capy{--signal:#F3B8C6}
           <div class="clock">48<b>:</b>00</div>
           <div class="line">Forty-eight minutes<br>for <em>everything.</em></div>
           <div class="foot"><span>ATT. 19,812 — SOLD OUT</span><span>TIP-OFF 21:00</span><span>06.2026</span></div>
+          <div class="back"><div class="bh"><span>SPEC SHEET — 01/05</span><span>GL© 2026</span></div><h5>Final night.</h5><div class="rows"><div><span>Type</span><span>Anton / Instrument Serif</span></div><div><span>Numerals</span><span>Ghost stroke 2px</span></div><div><span>Light</span><span>2 beams, 18° / −14°</span></div><div><span>Colors</span><span>Ink · Paper · Signal</span></div><div><span>Edition</span><span>1/1 — Not for sale. Yet.</span></div></div><div class="bs">Spec sheet</div></div>
         </div>
         <div class="card pg p2" data-t="Football / Stoppage time">
           <div class="pitch"><span class="c"></span><span class="l1"></span><span class="box"></span></div>
@@ -346,6 +382,7 @@ body.capy{--signal:#F3B8C6}
           <div class="top"><span>CUP FINAL</span><span>FULL TIME NEVER CAME</span></div>
           <div class="num">90+4′<small>nobody leaves. nobody breathes.</small></div>
           <div class="foot"><span>STOPPAGE TIME</span><span>1–1 · AGG. 2–2</span><span>07.2026</span></div>
+          <div class="back"><div class="bh"><span>SPEC SHEET — 02/05</span><span>GL© 2026</span></div><h5>90+4′</h5><div class="rows"><div><span>Type</span><span>Anton 27cq</span></div><div><span>Atmosphere</span><span>Turbulence smoke + flare</span></div><div><span>Pitch</span><span>Chalk 16% opacity</span></div><div><span>Colors</span><span>Ink · Paper · Signal</span></div><div><span>Edition</span><span>1/1 — Not for sale. Yet.</span></div></div><div class="bs">Spec sheet</div></div>
         </div>
         <div class="card pg p3" data-t="Festival / Lineup poster">
           <div class="dawn"></div><div class="sun"></div><div class="skyline"></div>
@@ -359,6 +396,7 @@ body.capy{--signal:#F3B8C6}
             <div><b>Secret guest</b><span>04:44 — ROOF</span></div>
           </div>
           <div class="foot"><span>GATES 21:00 · 18+</span><span>TALLINN HARBOUR</span></div>
+          <div class="back"><div class="bh"><span>SPEC SHEET — 03/05</span><span>GL© 2026</span></div><h5>Sound check.</h5><div class="rows"><div><span>Type</span><span>Instrument Serif ital</span></div><div><span>Horizon</span><span>Dawn gradient + sun disc</span></div><div><span>Crowd</span><span>Silhouette skyline</span></div><div><span>Colors</span><span>Paper · Ink · Signal</span></div><div><span>Edition</span><span>1/1 — Not for sale. Yet.</span></div></div><div class="bs">Spec sheet</div></div>
         </div>
         <div class="card pg p4" data-t="College basketball / Bracket">
           <div class="top"><span>68 TEAMS — 67 GAMES</span><span>ONE NET</span></div>
@@ -369,6 +407,7 @@ body.capy{--signal:#F3B8C6}
           <h4>March.</h4>
           <div class="sub2">sixty-eight dreams enter. one cuts the net.</div>
           <div class="foot"><span>SELECTION SUNDAY 03.2026</span><span>WIN OR GO HOME</span></div>
+          <div class="back"><div class="bh"><span>SPEC SHEET — 04/05</span><span>GL© 2026</span></div><h5>March.</h5><div class="rows"><div><span>Type</span><span>Anton 24cq + period</span></div><div><span>Bracket</span><span>8 lines → 1 dot</span></div><div><span>Texture</span><span>Halftone sphere 7px</span></div><div><span>Colors</span><span>Paper · Ink · Signal</span></div><div><span>Edition</span><span>1/1 — Not for sale. Yet.</span></div></div><div class="bs">Spec sheet</div></div>
         </div>
         <div class="card pg p5" data-t="Apparel / Drop poster">
           <div class="weave"></div><div class="fold"></div><div class="fold f2"></div>
@@ -376,6 +415,7 @@ body.capy{--signal:#F3B8C6}
           <h4>soft goods,<br><em>hard sellout.</em></h4>
           <div class="thread"></div>
           <div class="foot"><span>HEAVYWEIGHT 480 GSM</span><span>3 COLORWAYS · CUT ONCE</span></div>
+          <div class="back"><div class="bh"><span>SPEC SHEET — 05/05</span><span>GL© 2026</span></div><h5>Soft goods.</h5><div class="rows"><div><span>Type</span><span>Instrument Serif 15cq</span></div><div><span>Texture</span><span>Double weave 45°</span></div><div><span>Restraint</span><span>Tone-on-tone, 1 thread</span></div><div><span>Colors</span><span>Paper · Paper2 · Signal</span></div><div><span>Edition</span><span>1/1 — Not for sale. Yet.</span></div></div><div class="bs">Spec sheet</div></div>
         </div>
       </div>
       <div class="deck-ui">
@@ -463,8 +503,27 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 // scroll progress
 addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
-// live clock
-setInterval(()=>{const d=new Date();document.getElementById('clock').textContent='TALLINN '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' — OPEN FOR WORK'},1000);
+// live clock + öövahetus
+const isNight=()=>{const h=new Date().getHours();return h>=0&&h<6};
+if(isNight())document.body.classList.add('night');
+setInterval(()=>{const d=new Date();const lbl=isNight()?'INSOMNIA SHIFT — STILL OPEN':'OPEN FOR WORK';document.body.classList.toggle('night',isNight());document.getElementById('clock').textContent='TALLINN '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' — '+lbl},1000);
+// ava-tempel (1× sessioonis)
+const st=document.getElementById('stamp');
+if(sessionStorage.getItem('stamped')){st.remove()}
+else{st.classList.add('go');setTimeout(()=>st.classList.add('done'),50);setTimeout(()=>st.remove(),1300);sessionStorage.setItem('stamped','1')}
+// kontekstuaalne kursor
+document.getElementById('qmail').setAttribute('data-cur','COPY');
+document.querySelectorAll('.rr-strip a').forEach(a=>a.setAttribute('data-cur','OPEN'));
+const dn=document.getElementById('dNext'),dp=document.getElementById('dPrev');
+if(dn)dn.setAttribute('data-cur','→');if(dp)dp.setAttribute('data-cur','←');
+const curT=document.getElementById('curT');
+addEventListener('mouseover',e=>{const t=e.target.closest('[data-cur]');
+  if(t){curT.textContent=t.getAttribute('data-cur');document.body.classList.add('curlbl')}
+  else{document.body.classList.remove('curlbl')}});
+// konami → CRT
+const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let ki=0;
+addEventListener('keydown',e=>{ki=(e.key===seq[ki])?ki+1:(e.key===seq[0]?1:0);
+  if(ki===seq.length){ki=0;document.body.classList.add('crt');console.log('%cCRT MODE — SIGNAL FOUND','color:#0f0');setTimeout(()=>document.body.classList.remove('crt'),5000)}});
 // poster deck
 const deckEl=document.getElementById('deck');
 if(deckEl){
@@ -482,16 +541,19 @@ if(deckEl){
     tEl.textContent=cards[order[0]].dataset.t;
     iEl.textContent=String(order[0]+1).padStart(2,'0');
   }
-  function next(){if(busy)return;busy=true;const c=cards[order[0]];c.classList.add('fly');
+  function unflip(){cards.forEach(c=>c.classList.remove('flipped'))}
+  function next(){if(busy)return;busy=true;unflip();const c=cards[order[0]];c.classList.add('fly');
     setTimeout(()=>{order.push(order.shift());apply();requestAnimationFrame(()=>requestAnimationFrame(()=>c.classList.remove('fly')));setTimeout(()=>busy=false,80)},430);}
-  function prev(){if(busy)return;busy=true;order.unshift(order.pop());const c=cards[order[0]];
+  function prev(){if(busy)return;busy=true;unflip();order.unshift(order.pop());const c=cards[order[0]];
     c.classList.add('fly');apply();
     requestAnimationFrame(()=>requestAnimationFrame(()=>c.classList.remove('fly')));
     setTimeout(()=>busy=false,560);}
-  deckEl.addEventListener('click',next);
+  // klikk = FLIP (spec sheet), nupud/klahvid/svaip = sirvimine
+  deckEl.addEventListener('click',()=>{if(busy)return;const c=cards[order[0]];c.classList.toggle('flipped');
+    c.setAttribute('data-cur',c.classList.contains('flipped')?'BACK':'FLIP');});
   document.getElementById('dNext').addEventListener('click',e=>{e.stopPropagation();next()});
   document.getElementById('dPrev').addEventListener('click',e=>{e.stopPropagation();prev()});
-  addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});
+  addEventListener('keydown',e=>{if(!deckSeen)return;if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});
   let tx=null;
   deckEl.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
   deckEl.addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(d<-40)next();else if(d>40)prev();tx=null},{passive:true});
@@ -507,7 +569,16 @@ if(deckEl){
   new IntersectionObserver(es=>es.forEach(e=>deckSeen=e.isIntersecting),{threshold:.4}).observe(deckEl);
   function touch(){lastTouch=Date.now()}
   ['click','touchstart','keydown'].forEach(ev=>deckEl.addEventListener(ev,touch,{passive:true}));
-  setInterval(()=>{if(deckSeen&&!document.hidden&&Date.now()-lastTouch>7000&&!busy)next()},5000);
+  setInterval(()=>{if(deckSeen&&!document.hidden&&Date.now()-lastTouch>7000&&!busy&&!cards[order[0]].classList.contains('flipped'))next()},5000);
+  // PÄEVA POSTER — hero taust + virna tipp + link, kõik samast numbrist
+  const day=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/864e5);
+  const potd=day%cards.length;
+  while(order[0]!==potd)order.push(order.shift());
+  cards.forEach(c=>c.setAttribute('data-cur','FLIP'));
+  const hp=document.getElementById('heroPoster');
+  if(hp){const cl=cards[potd].cloneNode(true);cl.removeAttribute('data-cur');cl.classList.remove('flipped');hp.appendChild(cl);}
+  const pl=document.getElementById('potdLink');
+  if(pl)pl.textContent='POSTER OF THE DAY — '+String(potd+1).padStart(2,'0')+'/05 ↓';
   apply();
 }
 // ankru-hüpe ei tohi jätta pimedat ekraani
