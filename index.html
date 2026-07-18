@@ -282,24 +282,60 @@ footer .mono{color:rgba(237,232,223,.55)}
 .rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
 
-/* THE PACK — foil */
-#pack{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-3deg);width:min(360px,70vw);aspect-ratio:3/4.4;z-index:80;cursor:none;transition:opacity .4s}
-#pack .foil{position:absolute;inset:0;background:linear-gradient(135deg,#1B1B19 0%,#26261F 40%,#1B1B19 60%),#1B1B19;border:1px solid rgba(237,232,223,.2);overflow:hidden}
-#pack .foil::before{content:"";position:absolute;inset:-60% -20%;background:linear-gradient(115deg,transparent 42%,rgba(237,232,223,.16) 50%,transparent 58%);animation:sheen 3.2s ease-in-out infinite}
+/* THE PACKS — MyTeam riiul */
+#shelf{position:absolute;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;gap:min(4vw,48px);transition:opacity .4s}
+#shelf.gone{opacity:0;pointer-events:none}
+.pk{position:relative;width:min(220px,26vw);aspect-ratio:3/4.4;cursor:none;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .45s,filter .45s;animation:bob 4s ease-in-out infinite}
+.pk:nth-child(2){animation-delay:-1.3s}.pk:nth-child(3){animation-delay:-2.6s}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.pk:hover{transform:translateY(-16px) scale(1.04)}
+.pk.chosen{transform:scale(1.45);z-index:95;animation:none}
+.pk.fade{opacity:0;pointer-events:none}
+.pk .foil{position:absolute;inset:0;border:1px solid rgba(237,232,223,.2);overflow:hidden}
+.pk.s1 .foil{background:linear-gradient(135deg,#1B1B19,#26261F 40%,#1B1B19 60%)}
+.pk.hp .foil{background:linear-gradient(135deg,#2A1608,#4A2410 45%,#2A1608 65%),radial-gradient(circle at 30% 20%,rgba(232,120,40,.25),transparent 50%)}
+.pk.mn .foil{background:linear-gradient(135deg,#070A1E,#101838 45%,#070A1E 70%)}
+.pk .foil::before{content:"";position:absolute;inset:-60% -20%;background:linear-gradient(115deg,transparent 42%,rgba(237,232,223,.18) 50%,transparent 58%);animation:sheen 3.2s ease-in-out infinite}
+.pk.mn .foil::before{background:linear-gradient(115deg,transparent 38%,rgba(120,180,255,.22) 46%,rgba(255,120,200,.18) 52%,transparent 60%)}
 @keyframes sheen{0%,100%{transform:translateX(-38%)}50%{transform:translateX(38%)}}
-#pack .crimp{position:absolute;left:0;right:0;height:8%;background:var(--ink2);clip-path:polygon(0 0,4% 100%,8% 0,12% 100%,16% 0,20% 100%,24% 0,28% 100%,32% 0,36% 100%,40% 0,44% 100%,48% 0,52% 100%,56% 0,60% 100%,64% 0,68% 100%,72% 0,76% 100%,80% 0,84% 100%,88% 0,92% 100%,96% 0,100% 100%)}
-#pack .crimp.top{top:0;transform:scaleY(-1)}
-#pack .crimp.bot{bottom:0}
-#pack .band{position:absolute;left:-10%;right:-10%;top:38%;height:20%;background:var(--signal);transform:rotate(-8deg);display:flex;align-items:center;justify-content:center}
-#pack .band span{font-family:'Archivo Black',sans-serif;color:var(--paper);font-size:clamp(20px,5cqw,30px);text-transform:uppercase;letter-spacing:.02em}
-#pack .pk-top{position:absolute;top:12%;left:10%;right:10%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;color:rgba(237,232,223,.8);text-transform:uppercase}
-#pack .pk-bot{position:absolute;bottom:12%;left:10%;right:10%;text-align:center;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--paper);text-transform:uppercase;animation:blink 1.6s infinite}
-#pack .tear{position:absolute;left:0;right:0;top:0;height:16%;z-index:2;transition:transform .5s cubic-bezier(.3,.7,.4,1),opacity .5s}
-#pack.ripping .tear{transform:translate(24%,-160%) rotate(14deg);opacity:0}
-#pack.ripping{animation:shake .3s}
-@keyframes shake{25%{transform:translate(-50%,-50%) rotate(-4.5deg)}75%{transform:translate(-50%,-50%) rotate(-1.5deg)}}
-#pack.gone{opacity:0;pointer-events:none}
-.card.undealt{opacity:0;transform:translate(-50%,-30%) scale(.3) rotate(20deg)}
+.pk .crimp{position:absolute;left:0;right:0;height:8%;background:rgba(0,0,0,.45);clip-path:polygon(0 0,4% 100%,8% 0,12% 100%,16% 0,20% 100%,24% 0,28% 100%,32% 0,36% 100%,40% 0,44% 100%,48% 0,52% 100%,56% 0,60% 100%,64% 0,68% 100%,72% 0,76% 100%,80% 0,84% 100%,88% 0,92% 100%,96% 0,100% 100%)}
+.pk .crimp.top{top:0;transform:scaleY(-1)}
+.pk .crimp.bot{bottom:0}
+.pk .band{position:absolute;left:-8%;right:-8%;top:40%;height:19%;transform:rotate(-8deg);display:flex;align-items:center;justify-content:center;background:var(--signal)}
+.pk.hp .band{background:#E8781E}
+.pk.mn .band{background:#2F5BFF;background:linear-gradient(90deg,#3A2A8F,#2F5BFF)}
+.pk .band span{font-family:'Archivo Black',sans-serif;color:var(--paper);font-size:clamp(13px,6.4cqw,20px);text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.pk .pk-top{position:absolute;top:11%;left:10%;right:10%;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(7px,3.4cqw,10px);letter-spacing:.1em;color:rgba(237,232,223,.85);text-transform:uppercase}
+.pk .pk-bot{position:absolute;bottom:11%;left:8%;right:8%;text-align:center;font-family:'Space Mono',monospace;font-size:clamp(7px,3.6cqw,10px);letter-spacing:.14em;color:var(--paper);text-transform:uppercase;animation:blink 1.6s infinite}
+.pk .tear{position:absolute;left:0;right:0;top:0;height:16%;z-index:2;transition:transform .5s cubic-bezier(.3,.7,.4,1),opacity .5s;overflow:hidden}
+.pk.ripping .tear{transform:translate(26%,-170%) rotate(15deg);opacity:0}
+.pk.ripping{animation:shake .32s}
+@keyframes shake{25%{transform:scale(1.45) rotate(-2deg)}75%{transform:scale(1.45) rotate(1.4deg)}}
+.pk.locked{filter:grayscale(.9) brightness(.6)}
+.pk.locked .pk-bot{animation:none}
+.pk .lock{position:absolute;inset:0;z-index:3;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(7,10,20,.55);color:var(--paper);font-family:'Space Mono',monospace;font-size:clamp(7px,3.4cqw,10px);letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:8%}
+.pk.locked .lock{display:flex}
+.card.undealt{opacity:0;transform:translate(-50%,-46%) scale(.22) rotate(24deg)}
+.card.landing{transition:transform .7s cubic-bezier(.22,1.2,.3,1),opacity .4s}
+#flash{position:absolute;left:50%;top:50%;width:60%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(255,59,0,.4) 40%,transparent 70%);opacity:0;pointer-events:none;z-index:85}
+#flash.go{animation:flashgo .5s ease-out}
+@keyframes flashgo{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}25%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1.4)}}
+/* kaardi nimeplaat */
+.card .plate{position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;justify-content:space-between;align-items:baseline;padding:10% 6% 4.5%;background:linear-gradient(180deg,transparent,rgba(10,8,6,.82) 55%);backface-visibility:hidden}
+.card .plate .nm{font-family:'Archivo Black',sans-serif;color:var(--paper);font-size:4.6cqw;text-transform:uppercase;letter-spacing:.02em}
+.card .plate .sr{font-family:'Space Mono',monospace;color:var(--signal);font-size:clamp(7px,2cqw,10px);letter-spacing:.12em;text-transform:uppercase}
+/* GL ROOKIE SLAB */
+.p7{background:linear-gradient(160deg,#D7D7DC,#B9B9C1 55%,#CFCFD6);border-radius:4.5cqw;padding:4.5%;display:flex;flex-direction:column}
+.p7 .label{background:#F4F4F2;color:#111;border-radius:1.6cqw;padding:3.5% 5%;display:grid;grid-template-columns:1fr auto;gap:1%;font-family:'Space Mono',monospace;font-size:clamp(7px,2cqw,10px);letter-spacing:.08em;text-transform:uppercase}
+.p7 .label b{font-family:'Archivo Black',sans-serif;font-size:2.9cqw;letter-spacing:0}
+.p7 .label .g10{text-align:right;font-family:'Archivo Black',sans-serif;font-size:4.6cqw;color:var(--signal)}
+.p7 .label .bar{grid-column:1/-1;height:7px;margin-top:2%;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 4px,#111 4px 5px,transparent 5px 9px,#111 9px 12px,transparent 12px 14px)}
+.p7 .window{flex:1;margin-top:4.5%;background:#141210;border-radius:1.6cqw;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.p7 .window .ghost{position:absolute;left:2%;top:6%;font-family:'Anton',sans-serif;font-size:26cqw;color:transparent;-webkit-text-stroke:1.5px rgba(237,232,223,.25);writing-mode:vertical-rl;line-height:1}
+.p7 .window .num{font-family:'Anton',sans-serif;font-size:22cqw;color:var(--paper);line-height:1}
+.p7 .window .who{font-family:'Archivo Black',sans-serif;color:var(--signal);font-size:4.6cqw;text-transform:uppercase;margin-top:2%}
+.p7 .window .shield{margin-top:5%;width:24%;aspect-ratio:1;background:var(--signal);clip-path:polygon(50% 0,100% 18%,100% 62%,50% 100%,0 62%,0 18%);display:flex;align-items:center;justify-content:center;font-family:'Archivo Black',sans-serif;color:var(--paper);font-size:6cqw}
+.p7 .window .patch{position:absolute;bottom:4%;left:0;right:0;text-align:center;font-family:'Space Mono',monospace;font-size:clamp(7px,1.9cqw,10px);letter-spacing:.14em;color:rgba(237,232,223,.7);text-transform:uppercase}
 /* rarity + stats + holo */
 .card .back .rar{border:2px solid var(--signal);color:var(--signal);font-family:'Space Mono',monospace;font-size:clamp(7px,1.8cqw,10px);letter-spacing:.14em;padding:1% 2.5%;text-transform:uppercase}
 .card .back .stats{margin-top:4%}
@@ -372,7 +408,7 @@ body.capy{--signal:#F3B8C6}
   </h1>
   <div class="sub rv">
     <p>I design the things people actually see — posters, social systems, matchday graphics. Type carries the information, photography carries the emotion, grain makes it feel printed.</p>
-    <div class="coords mono">59.4370°N, 24.7536°E<br>SHIFTLAB STUDIO · @GERRITLEHE<br><a href="mailto:gerrit@shiftlabstudio.com">GERRIT@SHIFTLABSTUDIO.COM</a><br><a class="potd" href="#posters" id="potdLink">POSTER OF THE DAY — 01/05 ↓</a></div>
+    <div class="coords mono">59.4370°N, 24.7536°E<br>SHIFTLAB STUDIO · @GERRITLEHE<br><a href="mailto:gerrit@shiftlabstudio.com">GERRIT@SHIFTLABSTUDIO.COM</a><br><a class="potd" href="#posters" id="potdLink">CARD OF THE DAY ↓</a></div>
   </div>
 </header>
 
@@ -423,14 +459,34 @@ body.capy{--signal:#F3B8C6}
 
     <div class="deck-wrap rv">
       <div class="deck" id="deck">
-        <div id="pack" data-cur="RIP">
-          <div class="foil"></div>
-          <div class="tear"><div class="foil"></div><div class="crimp top"></div></div>
-          <div class="crimp bot"></div>
-          <div class="band"><span>GL© Series 01</span></div>
-          <div class="pk-top"><span>6 CARDS</span><span>1 HOLO</span></div>
-          <div class="pk-bot">RIP TO OPEN</div>
+        <div id="shelf">
+          <div class="pk s1" data-pack="s1" data-cur="RIP">
+            <div class="foil"></div>
+            <div class="tear"><div class="foil"></div><div class="crimp top"></div></div>
+            <div class="crimp bot"></div>
+            <div class="band"><span>Studio S01</span></div>
+            <div class="pk-top"><span>3 CARDS</span><span>1 HOLO?</span></div>
+            <div class="pk-bot">RIP TO OPEN</div>
+          </div>
+          <div class="pk hp" data-pack="hp" data-cur="RIP">
+            <div class="foil"></div>
+            <div class="tear"><div class="foil"></div><div class="crimp top"></div></div>
+            <div class="crimp bot"></div>
+            <div class="band"><span>Hoops Pack</span></div>
+            <div class="pk-top"><span>3 CARDS</span><span>1 GRADED</span></div>
+            <div class="pk-bot">RIP TO OPEN</div>
+          </div>
+          <div class="pk mn" data-pack="mn" data-cur="RIP">
+            <div class="foil"></div>
+            <div class="tear"><div class="foil"></div><div class="crimp top"></div></div>
+            <div class="crimp bot"></div>
+            <div class="band"><span>Midnight</span></div>
+            <div class="pk-top"><span>1 CARD</span><span>HOLO</span></div>
+            <div class="pk-bot">RIP TO OPEN</div>
+            <div class="lock"><span>🔒 UNLOCKS 00:00</span><span id="mnLock"></span></div>
+          </div>
         </div>
+        <div id="flash"></div>
         <div class="card pg p1" data-t="Basketball / Finals night">
           <div class="beam"></div><div class="beam b2"></div>
           <div class="crowd"></div>
@@ -490,14 +546,26 @@ body.capy{--signal:#F3B8C6}
           <div class="foot"><span>VISIBLE ONLY AFTER MIDNIGHT</span><span>TALLINN LOCAL</span></div>
           <div class="back"><div class="bh"><span>SPEC SHEET — 06/06</span><span>GL© 2026</span></div><h5>After hours.</h5><div class="rows"><div><span>Access</span><span>00:00–06:00 only</span></div><div><span>Moon</span><span>Full, top right</span></div><div><span>Type</span><span>Anton ghost + serif</span></div><div><span>Colors</span><span>Night · Paper · Signal</span></div><div><span>Edition</span><span>Midnight holo — unsellable</span></div></div><div class="bs">Night card</div></div>
         </div>
+        <div class="card p7" data-t="GL Rookie — graded slab" id="card7">
+          <div class="label"><span>GL© TRADING CARDS<br><b>GERRIT LEHE — ROOKIE</b></span><span class="g10">GEM MT<br>10</span><span class="bar"></span></div>
+          <div class="window">
+            <span class="ghost">LEHE</span>
+            <span class="num">21</span>
+            <span class="who">Gerrit Lehe</span>
+            <span class="shield">GL</span>
+            <span class="patch">GAME-WORN GRID PATCH · 1 OF 1 · 21072026-1</span>
+          </div>
+          <div class="back"><div class="bh"><span>SLAB — 1/1</span><span>GL© 2026</span></div><h5>The rookie.</h5><div class="rows"><div><span>Position</span><span>Designer / Guard</span></div><div><span>Club</span><span>ShiftLab · Rae Koss</span></div><div><span>Handle</span><span>Type &amp; ball. Both.</span></div><div><span>Grade</span><span>GEM MT 10</span></div><div><span>Edition</span><span>1 of 1 — not graded twice</span></div></div><div class="bs">Rookie card</div></div>
+        </div>
       </div>
       <div class="deck-ui">
-        <button class="btn" id="dPrev" aria-label="Previous poster">← PREV</button>
-        <div class="mid"><span class="title" id="dTitle">Basketball / Finals night</span><span class="mono"><span class="idx" id="dIdx">01</span> / 05</span></div>
-        <button class="btn" id="dNext" aria-label="Next poster">NEXT →</button>
+        <button class="btn" id="dBack" aria-label="Back to packs" style="display:none">← PACKS</button>
+        <button class="btn" id="dPrev" aria-label="Previous poster" style="display:none">← PREV</button>
+        <div class="mid"><span class="title" id="dTitle">Pick a pack</span><span class="mono"><span class="idx" id="dIdx">—</span></span></div>
+        <button class="btn" id="dNext" aria-label="Next poster" style="display:none">NEXT →</button>
       </div>
       <div class="dots" id="dDots" aria-label="Poster selector"></div>
-      <div class="deck-hint mono">CLICK CARD = FLIP · ARROWS = BROWSE · SWIPE</div>
+      <div class="deck-hint mono" id="deckHint">PICK A PACK · RIP IT · FLIP THE CARDS</div>
       <div class="mid-count mono" id="midCount"></div>
     </div>
 
@@ -618,7 +686,9 @@ if(mc)setInterval(()=>{const n=new Date();let t,lbl;
   if(NIGHT){t=new Date(n);t.setHours(6,0,0,0);lbl='MIDNIGHT CARD IN PLAY — LEAVES IN ';}
   else{t=new Date(n);t.setHours(24,0,0,0);lbl='CARD 06 UNLOCKS AT MIDNIGHT — ';}
   const s=Math.max(0,(t-n)/1000|0);
-  mc.textContent=lbl+String(s/3600|0).padStart(2,'0')+':'+String(s/60%60|0).padStart(2,'0')+':'+String(s%60|0).padStart(2,'0');},1000);
+  const ts=String(s/3600|0).padStart(2,'0')+':'+String(s/60%60|0).padStart(2,'0')+':'+String(s%60|0).padStart(2,'0');
+  mc.textContent=lbl+ts;
+  const ml=document.getElementById('mnLock');if(ml)ml.textContent=NIGHT?'IN PLAY':'T-'+ts;},1000);
 // telemeetria (F1)
 const tm=document.getElementById('telem'),t0s=Date.now();
 if(tm)setInterval(()=>{const s=(Date.now()-t0s)/1000|0;
@@ -631,84 +701,104 @@ addEventListener('keydown',e=>{ki=(e.key===seq[ki])?ki+1:(e.key===seq[0]?1:0);
 const NIGHT=(h=>h>=0&&h<6)(new Date().getHours());
 const deckEl=document.getElementById('deck');
 if(deckEl){
-  const c6=document.getElementById('card6');
-  if(!NIGHT&&c6)c6.remove(); else if(c6)c6.classList.add('holo');
   const cards=[...deckEl.querySelectorAll('.card')];
-  // reitingud + haruldus (2K-stiil)
+  const NAMES=['FINAL NIGHT','90+4′','SOUND CHECK','MARCH.','SOFT GOODS','AFTER HOURS','GL ROOKIE'];
   const META=[['LEGENDARY',[['TYPE',97],['CRAFT',92],['VOLUME',99]]],
               ['EPIC',[['TYPE',91],['CRAFT',95],['VOLUME',96]]],
               ['RARE',[['TYPE',94],['CRAFT',90],['VOLUME',84]]],
               ['RARE',[['TYPE',96],['CRAFT',88],['VOLUME',82]]],
               ['COMMON',[['TYPE',89],['CRAFT',93],['VOLUME',61]]],
-              ['MIDNIGHT HOLO',[['TYPE',95],['CRAFT',94],['VOLUME',100]]]];
-  cards.forEach((c,i)=>{const m=META[c.id==='card6'?5:i];if(!m)return;
+              ['MIDNIGHT HOLO',[['TYPE',95],['CRAFT',94],['VOLUME',100]]],
+              ['ROOKIE 1/1',[['HANDLE',93],['VISION',91],['RANGE',88]]]];
+  cards.forEach((c,i)=>{const m=META[i];if(!m)return;
     const bh=c.querySelector('.back .bh');if(bh){const r=document.createElement('span');r.className='rar';r.textContent='★ '+m[0];bh.appendChild(r)}
     const rows=c.querySelector('.back .rows');if(rows){const st=document.createElement('div');st.className='stats';
       st.innerHTML=m[1].map(s=>'<div class="st"><span>'+s[0]+'</span><span class="bar"><i style="width:'+s[1]+'%"></i></span><span class="nm">'+s[1]+'</span></div>').join('');
-      rows.after(st)}});
-  const rots=[0,-2.6,2.1,-1.5,1.3,1.8];
-  let order=cards.map((_,i)=>i), busy=true, dealt=false;
-  cards.forEach(c=>c.classList.add('undealt'));
-  const tEl=document.getElementById('dTitle'), iEl=document.getElementById('dIdx');
+      rows.after(st)}
+    if(c.id!=='card7'){const p=document.createElement('div');p.className='plate';
+      p.innerHTML='<span class="nm">'+NAMES[i]+'</span><span class="sr">★ '+m[0]+'</span>';c.appendChild(p)}});
+  const PACKS={s1:{ids:[1,2,4]},hp:{ids:[0,3,6]},mn:{ids:[5]}};
+  const rots=[0,-2.6,2.1,-1.5,1.3,1.8,1.0];
+  let order=[],busy=true,dealt=false,curPack=null;
+  cards.forEach(c=>{c.classList.add('undealt');c.setAttribute('data-cur','FLIP')});
+  const tEl=document.getElementById('dTitle'),iEl=document.getElementById('dIdx'),
+        dotsEl=document.getElementById('dDots'),backBtn=document.getElementById('dBack'),
+        nBtn=document.getElementById('dNext'),pBtn=document.getElementById('dPrev'),
+        hint=document.getElementById('deckHint'),shelf=document.getElementById('shelf');
   function apply(){
     order.forEach((ci,i)=>{const c=cards[ci];
       c.style.zIndex=60-i;
-      c.style.setProperty('--r',rots[i%rots.length]+'deg');
+      c.style.setProperty('--r',rots[ci%rots.length]+'deg');
       c.style.setProperty('--y',(i*12)+'px');
       c.style.setProperty('--s',String(1-i*0.035));
     });
-    tEl.textContent=cards[order[0]].dataset.t;
-    iEl.textContent=String(order[0]+1).padStart(2,'0');
+    if(order.length&&curPack){tEl.textContent=cards[order[0]].dataset.t;
+      iEl.textContent=String(PACKS[curPack].ids.indexOf(order[0])+1).padStart(2,'0')+' / '+String(order.length).padStart(2,'0');
+      [...dotsEl.children].forEach((b,i)=>b.classList.toggle('on',PACKS[curPack].ids[i]===order[0]));}
   }
-  function unflip(){cards.forEach(c=>c.classList.remove('flipped'))}
-  function next(){if(busy)return;busy=true;unflip();const c=cards[order[0]];c.classList.add('fly');
+  function unflip(){cards.forEach(c=>{c.classList.remove('flipped');c.setAttribute('data-cur','FLIP')})}
+  function next(){if(busy||order.length<2)return;busy=true;unflip();const c=cards[order[0]];c.classList.add('fly');
     setTimeout(()=>{order.push(order.shift());apply();requestAnimationFrame(()=>requestAnimationFrame(()=>c.classList.remove('fly')));setTimeout(()=>busy=false,80)},430);}
-  function prev(){if(busy)return;busy=true;unflip();order.unshift(order.pop());const c=cards[order[0]];
+  function prev(){if(busy||order.length<2)return;busy=true;unflip();order.unshift(order.pop());const c=cards[order[0]];
     c.classList.add('fly');apply();
     requestAnimationFrame(()=>requestAnimationFrame(()=>c.classList.remove('fly')));
     setTimeout(()=>busy=false,560);}
-  // klikk = FLIP (spec sheet), nupud/klahvid/svaip = sirvimine
-  deckEl.addEventListener('click',()=>{if(busy)return;const c=cards[order[0]];c.classList.toggle('flipped');
+  deckEl.addEventListener('click',()=>{if(busy||!dealt)return;const c=cards[order[0]];c.classList.toggle('flipped');
     window._flips=(window._flips||0)+1;tick();
     c.setAttribute('data-cur',c.classList.contains('flipped')?'BACK':'FLIP');});
-  // PAKK
-  const pack=document.getElementById('pack');
-  if(pack)pack.addEventListener('click',e=>{e.stopPropagation();if(dealt)return;dealt=true;
-    ripSnd();window._rips=1;pack.classList.add('ripping');
-    setTimeout(()=>pack.classList.add('gone'),480);
-    order.forEach((ci,i)=>setTimeout(()=>{cards[ci].classList.remove('undealt');tick()},560+i*150));
-    setTimeout(()=>{busy=false;pack.remove()},560+order.length*150+200)});
-  document.getElementById('dNext').addEventListener('click',e=>{e.stopPropagation();next()});
-  document.getElementById('dPrev').addEventListener('click',e=>{e.stopPropagation();prev()});
-  addEventListener('keydown',e=>{if(!deckSeen)return;if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});
-  let tx=null;
-  deckEl.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
-  deckEl.addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(d<-40)next();else if(d>40)prev();tx=null},{passive:true});
-  // dots
-  const dotsEl=document.getElementById('dDots');
-  cards.forEach((c,i)=>{const b=document.createElement('button');b.title=c.dataset.t;
-    b.addEventListener('click',e=>{e.stopPropagation();touch();let g=0;while(order[0]!==i&&g<cards.length+1){order.push(order.shift());g++}apply()});
-    dotsEl.appendChild(b)});
-  const _apply=apply;
-  apply=function(){_apply();[...dotsEl.children].forEach((b,i)=>b.classList.toggle('on',i===order[0]))};
-  // auto-flip (pausib kui kasutaja puutub või leht peidus)
+  function flash(){const f=document.getElementById('flash');if(!f)return;f.classList.remove('go');void f.offsetWidth;f.classList.add('go')}
+  function openPack(pk,el){
+    if(dealt||el.classList.contains('chosen'))return;
+    if(pk==='mn'&&!NIGHT)return;
+    curPack=pk;order=[...PACKS[pk].ids];
+    el.classList.add('chosen');
+    document.querySelectorAll('.pk').forEach(p=>{if(p!==el)p.classList.add('fade')});
+    setTimeout(()=>{el.classList.add('ripping');ripSnd();window._rips=(window._rips||0)+1},380);
+    setTimeout(()=>shelf.classList.add('gone'),950);
+    dotsEl.innerHTML='';
+    order.forEach(ci=>{const b=document.createElement('button');b.title=cards[ci].dataset.t;
+      b.addEventListener('click',e=>{e.stopPropagation();touch();let g=0;while(order[0]!==ci&&g<order.length+1){order.push(order.shift());g++}apply()});
+      dotsEl.appendChild(b)});
+    order.forEach((ci,i)=>setTimeout(()=>{const c=cards[ci];c.classList.add('landing');c.classList.remove('undealt');tick();
+      const m=META[ci][0];if(/LEGEND|HOLO|1\/1/.test(m))flash();
+      setTimeout(()=>c.classList.remove('landing'),750)},1000+i*280));
+    setTimeout(()=>{busy=false;dealt=true;apply();
+      backBtn.style.display='';if(order.length>1){nBtn.style.display='';pBtn.style.display=''}
+      hint.textContent='CLICK CARD = FLIP · ARROWS = BROWSE · SWIPE'},1000+order.length*280+300);
+    apply();
+  }
+  document.querySelectorAll('.pk').forEach(p=>p.addEventListener('click',e=>{e.stopPropagation();openPack(p.dataset.pack,p)}));
+  backBtn.addEventListener('click',e=>{e.stopPropagation();
+    unflip();dealt=false;busy=true;curPack=null;order=[];
+    cards.forEach(c=>{c.classList.add('undealt');c.classList.remove('landing','fly')});
+    shelf.classList.remove('gone');
+    document.querySelectorAll('.pk').forEach(p=>p.classList.remove('chosen','fade','ripping'));
+    backBtn.style.display='none';nBtn.style.display='none';pBtn.style.display='none';
+    dotsEl.innerHTML='';tEl.textContent='Pick a pack';iEl.textContent='—';
+    hint.textContent='PICK A PACK · RIP IT · FLIP THE CARDS';});
+  nBtn.addEventListener('click',e=>{e.stopPropagation();tick();next()});
+  pBtn.addEventListener('click',e=>{e.stopPropagation();tick();prev()});
   let deckSeen=false,lastTouch=0;
   new IntersectionObserver(es=>es.forEach(e=>deckSeen=e.isIntersecting),{threshold:.4}).observe(deckEl);
   function touch(){lastTouch=Date.now()}
   ['click','touchstart','keydown'].forEach(ev=>deckEl.addEventListener(ev,touch,{passive:true}));
-  setInterval(()=>{if(deckSeen&&!document.hidden&&Date.now()-lastTouch>7000&&!busy&&!cards[order[0]].classList.contains('flipped'))next()},5000);
-  // PÄEVA POSTER — hero taust + virna tipp + link, kõik samast numbrist
+  addEventListener('keydown',e=>{if(!deckSeen||!dealt)return;if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});
+  let tx=null;
+  deckEl.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+  deckEl.addEventListener('touchend',e=>{if(tx===null||!dealt)return;const d=e.changedTouches[0].clientX-tx;if(d<-40)next();else if(d>40)prev();tx=null},{passive:true});
+  setInterval(()=>{if(deckSeen&&dealt&&!document.hidden&&order.length>1&&Date.now()-lastTouch>7000&&!busy&&!cards[order[0]].classList.contains('flipped'))next()},5000);
+  // kesköö-pakk lukku + KAART OF THE DAY
+  if(!NIGHT){const mp=document.querySelector('.pk.mn');if(mp){mp.classList.add('locked');mp.removeAttribute('data-cur')}}
   const day=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/864e5);
-  const potd=day%cards.length;
-  while(order[0]!==potd)order.push(order.shift());
-  cards.forEach(c=>c.setAttribute('data-cur','FLIP'));
-  const hp=document.getElementById('heroPoster');
-  if(hp){const cl=cards[potd].cloneNode(true);cl.removeAttribute('data-cur');cl.classList.remove('flipped','undealt','holo');hp.appendChild(cl);}
+  const pool=NIGHT?[0,1,2,3,4,5,6]:[0,1,2,3,4,6];
+  const potd=pool[day%pool.length];
   cards[potd].classList.add('holo');
-  const pl=document.getElementById('potdLink');
-  if(pl)pl.textContent='POSTER OF THE DAY — '+String(potd+1).padStart(2,'0')+'/05 ↓';
-  apply();
+  const hp2=document.getElementById('heroPoster');
+  if(hp2){const cl=cards[potd].cloneNode(true);cl.removeAttribute('data-cur');cl.classList.remove('flipped','undealt','holo','landing');hp2.appendChild(cl);}
+  const pl2=document.getElementById('potdLink');
+  if(pl2)pl2.textContent='CARD OF THE DAY — '+NAMES[potd]+' ↓';
 }
+
 // ankru-hüpe ei tohi jätta pimedat ekraani
 function wake(h){try{const t=document.querySelector(h);if(t)[t,...t.querySelectorAll('.rv')].forEach(el=>el.classList.add('in'))}catch(_){}}
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{wake(a.getAttribute('href'));document.body.classList.remove('menuOpen')}));
