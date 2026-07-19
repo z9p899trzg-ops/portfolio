@@ -23,12 +23,12 @@ a{color:inherit;text-decoration:none;cursor:none}
 img{display:block;max-width:100%}
 
 /* grain */
-body::after{content:"";position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:9999;opacity:.45;mix-blend-mode:overlay;
+body::after{content:"";position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:9999;opacity:.28;mix-blend-mode:overlay;
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 animation:grain 8s steps(10) infinite}
 @keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-2%,2%)}40%{transform:translate(2%,-1%)}60%{transform:translate(-1%,-2%)}80%{transform:translate(1%,1%)}}
 
-#cur{position:fixed;width:12px;height:12px;background:var(--signal);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .18s,height .18s,background .18s;mix-blend-mode:difference;display:flex;align-items:center;justify-content:center}
+#cur{position:fixed;width:12px;height:12px;background:var(--signal);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .12s,height .12s,background .12s;mix-blend-mode:difference;display:flex;align-items:center;justify-content:center}
 body.hovering #cur{width:46px;height:46px;background:var(--paper)}
 #cur span{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.08em;color:var(--ink);opacity:0;white-space:nowrap}
 body.curlbl #cur{width:56px;height:56px;background:var(--signal);mix-blend-mode:normal}
@@ -79,7 +79,7 @@ section{scroll-margin-top:84px}
 .dots{display:flex;gap:8px;justify-content:center;margin-top:14px}
 .dots button{width:36px;height:5px;background:rgba(237,232,223,.22);border:0;cursor:none;transition:background .25s,transform .25s}
 .dots button.on{background:var(--signal);transform:scaleY(1.6)}
-@media(prefers-reduced-motion:reduce){body::after{animation:none}.rv{transition:none;opacity:1;transform:none}.marquee .track{animation:none}.card{transition:none}}
+@media(prefers-reduced-motion:reduce){body::after{animation:none}.rv{transition:none;opacity:1;transform:none}.card{transition:none}}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5vw 4vh;position:relative;overflow:hidden}
@@ -98,11 +98,6 @@ h1 .serif{font-family:'Instrument Serif',serif;font-style:italic;text-transform:
 .hero .coords{text-align:right;line-height:2}
 .hero .coords a{border-bottom:1px solid var(--signal)}
 .hero .coords a:hover{color:var(--signal)}
-
-.marquee{border-top:1px solid rgba(237,232,223,.2);border-bottom:1px solid rgba(237,232,223,.2);overflow:hidden;padding:13px 0}
-.marquee .track{display:flex;gap:48px;white-space:nowrap;animation:mq 22s linear infinite;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:15px;letter-spacing:.06em}
-.marquee .track span em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--signal);text-transform:none}
-@keyframes mq{to{transform:translateX(-50%)}}
 
 section{padding:13vh 0 5vh}
 .shead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(237,232,223,.25);padding-bottom:14px;margin-bottom:6vh}
@@ -136,11 +131,21 @@ section{padding:13vh 0 5vh}
 /* POSTERS — the pile */
 .deck-wrap{max-width:760px;margin:0 auto}
 .deck{position:relative;height:min(82vh,720px)}
-.card{position:absolute;left:50%;top:50%;width:min(520px,84vw);aspect-ratio:4/5;container-type:inline-size;overflow:hidden;box-shadow:0 26px 70px rgba(0,0,0,.6);transform:translate(-50%,-50%) rotate(var(--r,0deg)) translateY(var(--y,0px)) scale(var(--s,1)) rotateY(var(--f,0deg));transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .45s;will-change:transform;transform-style:preserve-3d}
+.card{position:absolute;left:50%;top:50%;width:min(520px,84vw);aspect-ratio:4/5;container-type:inline-size;border-radius:6px;box-shadow:0 24px 64px rgba(17,17,16,.45);transform:translate(-50%,-50%) rotate(var(--r,0deg)) translateY(var(--y,0px)) scale(var(--s,1)) rotateY(var(--f,0deg));transition:transform .48s cubic-bezier(.22,1,.36,1),opacity .24s;will-change:transform;transform-style:preserve-3d}
 .card.fly{transform:translate(38%,-70%) rotate(17deg) scale(1.02);opacity:0}
 .card.flipped{--f:180deg}
-.card>*:not(.back){backface-visibility:hidden}
-.card .back{position:absolute;inset:0;background:var(--ink);color:var(--paper);transform:rotateY(180deg);backface-visibility:hidden;padding:8%;display:flex;flex-direction:column}
+.card .face{position:absolute;inset:0;padding:inherit;display:inherit;flex-direction:inherit;overflow:hidden;border-radius:6px;backface-visibility:hidden}
+.card .back{position:absolute;inset:0;background:var(--ink);color:var(--paper);transform:rotateY(180deg);backface-visibility:hidden;padding:8%;display:flex;flex-direction:column;overflow:hidden;border-radius:6px}
+/* kaardi anatoomia: keyline + set-chip + nimeplaat */
+.face .cframe{position:absolute;inset:2.6%;border:1.5px solid var(--fr,rgba(237,232,223,.55));pointer-events:none;z-index:6}
+.face .fset{position:absolute;top:4.2%;left:4.5%;z-index:7;background:var(--fr,#EDE8DF);color:var(--frt,#111110);font-family:'Space Mono',monospace;font-size:clamp(6px,1.7cqw,9px);letter-spacing:.12em;padding:.8% 2%;text-transform:uppercase}
+.face .plate{position:absolute;left:2.6%;right:2.6%;bottom:2.6%;z-index:6;display:flex;justify-content:space-between;align-items:baseline;padding:7% 4% 3%;background:linear-gradient(180deg,transparent,rgba(10,8,6,.85) 60%)}
+.face .plate .nm{font-family:'Archivo Black',sans-serif;color:#EDE8DF;font-size:4.4cqw;text-transform:uppercase}
+.face .plate .sr{font-family:'Space Mono',monospace;color:var(--signal);font-size:clamp(7px,1.9cqw,10px);letter-spacing:.12em;text-transform:uppercase}
+/* seljad v2 — grader'i kiht */
+.back .stampA{position:absolute;right:6%;top:31%;border:3px solid var(--signal);color:var(--signal);font-family:'Archivo Black',sans-serif;font-size:3cqw;padding:1.2% 2.6%;transform:rotate(-9deg);text-transform:uppercase;opacity:.9;z-index:3}
+.back .gnote{position:absolute;left:8%;bottom:9%;z-index:3;font-family:'Instrument Serif',serif;font-style:italic;color:var(--paper);font-size:4.6cqw;transform:rotate(-2.5deg);max-width:70%}
+.back .doodle{position:absolute;left:6%;top:20%;width:56%;height:9%;pointer-events:none;z-index:3}
 .card .back .bh{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:clamp(8px,2cqw,11px);letter-spacing:.12em;text-transform:uppercase;color:var(--signal)}
 .card .back h5{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:7cqw;line-height:1;margin:7% 0 4%}
 .card .back .rows{flex:1;display:flex;flex-direction:column;justify-content:center}
@@ -188,7 +193,7 @@ section{padding:13vh 0 5vh}
  repeating-linear-gradient(-45deg,rgba(17,17,16,.045) 0 2px,transparent 2px 6px)}
 .fold{position:absolute;left:-10%;top:18%;width:70%;height:50%;background:radial-gradient(ellipse,rgba(17,17,16,.10),transparent 65%);filter:blur(14px);transform:rotate(-14deg)}
 .fold.f2{left:auto;right:-12%;top:40%;transform:rotate(10deg);background:radial-gradient(ellipse,rgba(255,255,255,.5),transparent 60%)}
-.pg::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
+.pg::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:overlay;border-radius:6px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
 
 /* P1 FINAL NIGHT */
 .p1{background:#0B0B0A;padding:7%}
@@ -279,7 +284,10 @@ section{padding:13vh 0 5vh}
 footer{border-top:1px solid rgba(237,232,223,.2);margin-top:9vh;padding:22px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 footer .mono{color:rgba(237,232,223,.55)}
 
-.rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .48s cubic-bezier(.22,1,.36,1),transform .48s cubic-bezier(.22,1,.36,1)}
+/* atmosfäär: teine sessioon — lambivalgus */
+body.evening::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 60% 40% at 72% 18%,rgba(255,176,88,.06),transparent 70%)}
+body.morning::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 60% 40% at 30% 12%,rgba(160,190,255,.04),transparent 70%)}
 .rv.in{opacity:1;transform:none}
 
 /* THE PACKS — MyTeam riiul */
@@ -324,12 +332,15 @@ footer .mono{color:rgba(237,232,223,.55)}
 .card .plate{position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;justify-content:space-between;align-items:baseline;padding:10% 6% 4.5%;background:linear-gradient(180deg,transparent,rgba(10,8,6,.82) 55%);backface-visibility:hidden}
 .card .plate .nm{font-family:'Archivo Black',sans-serif;color:var(--paper);font-size:4.6cqw;text-transform:uppercase;letter-spacing:.02em}
 .card .plate .sr{font-family:'Space Mono',monospace;color:var(--signal);font-size:clamp(7px,2cqw,10px);letter-spacing:.12em;text-transform:uppercase}
-/* GL ROOKIE SLAB */
-.p7{background:linear-gradient(160deg,#D7D7DC,#B9B9C1 55%,#CFCFD6);border-radius:4.5cqw;padding:4.5%;display:flex;flex-direction:column}
-.p7 .label{background:#F4F4F2;color:#111;border-radius:1.6cqw;padding:3.5% 5%;display:grid;grid-template-columns:1fr auto;gap:1%;font-family:'Space Mono',monospace;font-size:clamp(7px,2cqw,10px);letter-spacing:.08em;text-transform:uppercase}
-.p7 .label b{font-family:'Archivo Black',sans-serif;font-size:2.9cqw;letter-spacing:0}
-.p7 .label .g10{text-align:right;font-family:'Archivo Black',sans-serif;font-size:4.6cqw;color:var(--signal)}
-.p7 .label .bar{grid-column:1/-1;height:7px;margin-top:2%;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 4px,#111 4px 5px,transparent 5px 9px,#111 9px 12px,transparent 12px 14px)}
+/* GL ROOKIE SLAB — PSA-fideelsus */
+.p7{background:linear-gradient(160deg,#D7D7DC,#B9B9C1 55%,#CFCFD6);border-radius:12px;padding:4.5%;display:flex;flex-direction:column}
+.p7 .face{border-radius:12px}
+.p7 .label{position:relative;background:#F6F5F1;color:#111;border:3px solid #C8102E;border-radius:1.2cqw;padding:2.8% 3.5%;display:grid;grid-template-columns:1fr auto;column-gap:4%;font-family:'Space Mono',monospace;font-size:clamp(6.5px,1.9cqw,10px);letter-spacing:.06em;text-transform:uppercase;line-height:1.5}
+.p7 .label b{font-family:'Archivo Black',sans-serif;font-size:2.7cqw;letter-spacing:0;display:block}
+.p7 .label .rcol{text-align:right}
+.p7 .label .g10{font-family:'Archivo Black',sans-serif;font-size:4.8cqw;color:#111;line-height:1;display:block}
+.p7 .label .lfoil{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);background:linear-gradient(135deg,#cfd2d8,#f2f4f7 45%,#aeb3bc);color:#4a4f58;font-family:'Archivo Black',sans-serif;font-size:2.4cqw;padding:.6% 2.4%;border-radius:2px;letter-spacing:.04em}
+.p7 .label .bar{grid-column:1/1;height:6px;margin-top:2%;width:70%;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 4px,#111 4px 5px,transparent 5px 9px,#111 9px 12px,transparent 12px 14px)}
 .p7 .window{flex:1;margin-top:4.5%;background:#141210;border-radius:1.6cqw;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .p7 .window .ghost{position:absolute;left:2%;top:6%;font-family:'Anton',sans-serif;font-size:26cqw;color:transparent;-webkit-text-stroke:1.5px rgba(237,232,223,.25);writing-mode:vertical-rl;line-height:1}
 .p7 .window .num{font-family:'Anton',sans-serif;font-size:22cqw;color:var(--paper);line-height:1}
@@ -343,7 +354,7 @@ footer .mono{color:rgba(237,232,223,.55)}
 .card .back .stats .bar{height:5px;background:rgba(237,232,223,.15);position:relative}
 .card .back .stats .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--signal)}
 .card .back .stats .nm{text-align:right;color:var(--signal);font-weight:700}
-.card.holo::before{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;background:linear-gradient(115deg,rgba(255,0,80,.22),rgba(255,200,0,.20),rgba(0,255,170,.20),rgba(80,120,255,.22),rgba(255,0,80,.22));background-size:300% 300%;mix-blend-mode:color-dodge;animation:holo 5s linear infinite}
+.card.holo .face::before{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;background:linear-gradient(115deg,rgba(255,0,80,.22),rgba(255,200,0,.20),rgba(0,255,170,.20),rgba(80,120,255,.22),rgba(255,0,80,.22));background-size:300% 300%;mix-blend-mode:color-dodge;animation:holo 4.8s linear infinite}
 @keyframes holo{0%{background-position:0% 0%}100%{background-position:300% 300%}}
 /* card 06 — midnight */
 .p6{background:#08080C;padding:7%;display:flex;flex-direction:column}
@@ -411,13 +422,6 @@ body.capy{--signal:#F3B8C6}
     <div class="coords mono">59.4370°N, 24.7536°E<br>SHIFTLAB STUDIO · @GERRITLEHE<br><a href="mailto:gerrit@shiftlabstudio.com">GERRIT@SHIFTLABSTUDIO.COM</a><br><a class="potd" href="#posters" id="potdLink">CARD OF THE DAY ↓</a></div>
   </div>
 </header>
-
-<div class="marquee" aria-hidden="true">
-  <div class="track">
-    <span>POSTERS — SOCIAL SYSTEMS — MATCHDAY GRAPHICS — BRAND CONTENT — <em>made loud.</em>&nbsp;&nbsp;</span>
-    <span>POSTERS — SOCIAL SYSTEMS — MATCHDAY GRAPHICS — BRAND CONTENT — <em>made loud.</em>&nbsp;&nbsp;</span>
-  </div>
-</div>
 
 <!-- WORK -->
 <section id="work">
@@ -547,7 +551,7 @@ body.capy{--signal:#F3B8C6}
           <div class="back"><div class="bh"><span>SPEC SHEET — 06/06</span><span>GL© 2026</span></div><h5>After hours.</h5><div class="rows"><div><span>Access</span><span>00:00–06:00 only</span></div><div><span>Moon</span><span>Full, top right</span></div><div><span>Type</span><span>Anton ghost + serif</span></div><div><span>Colors</span><span>Night · Paper · Signal</span></div><div><span>Edition</span><span>Midnight holo — unsellable</span></div></div><div class="bs">Night card</div></div>
         </div>
         <div class="card p7" data-t="GL Rookie — graded slab" id="card7">
-          <div class="label"><span>GL© TRADING CARDS<br><b>GERRIT LEHE — ROOKIE</b></span><span class="g10">GEM MT<br>10</span><span class="bar"></span></div>
+          <div class="label"><span>2026 GL© CUSTOM<br>STUDIO SERIES 01<br><b>GERRIT LEHE — ROOKIE</b><span class="bar"></span></span><span class="rcol">#21<br>GEM MT<span class="g10">10</span>21072026-1</span><span class="lfoil">GL</span></div>
           <div class="window">
             <span class="ghost">LEHE</span>
             <span class="num">21</span>
@@ -655,10 +659,17 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 // scroll progress
 addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
-// live clock + öövahetus
+// kell + sessioonid + atmosfäär (24-süsteem)
 const isNight=()=>{const h=new Date().getHours();return h>=0&&h<6};
-if(isNight())document.body.classList.add('night');
-setInterval(()=>{const d=new Date();const lbl=isNight()?'INSOMNIA SHIFT — STILL OPEN':'OPEN FOR WORK';document.body.classList.toggle('night',isNight());document.getElementById('clock').textContent='TALLINN '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' — '+lbl},1000);
+function session(){const h=new Date().getHours();
+  if(h<6)return['AFTER HOURS','night'];if(h<12)return['FIRST SESSION','morning'];
+  if(h<18)return['OPEN FOR WORK','day'];return['SECOND SESSION','evening'];}
+function setAmb(){const[lbl,cls]=session();
+  document.body.classList.remove('night','morning','day','evening');
+  document.body.classList.add(cls);return lbl}
+setInterval(()=>{const d=new Date();const lbl=setAmb();
+  document.getElementById('clock').textContent='TALLINN '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' — '+lbl},1000);
+setAmb();
 // ava-tempel (1× sessioonis)
 const st=document.getElementById('stamp');
 if(sessionStorage.getItem('stamped')){st.remove()}
@@ -692,7 +703,7 @@ if(mc)setInterval(()=>{const n=new Date();let t,lbl;
 // telemeetria (F1)
 const tm=document.getElementById('telem'),t0s=Date.now();
 if(tm)setInterval(()=>{const s=(Date.now()-t0s)/1000|0;
-  tm.textContent='TELEMETRY — '+String(s/60|0).padStart(2,'0')+':'+String(s%60).padStart(2,'0')+' ON TRACK · '+(window._flips||0)+' FLIPS · '+(window._rips||0)+' PACK RIPPED · GRIP OK'},1000);
+  tm.textContent=session()[0]+' · '+String(s/60|0).padStart(2,'0')+':'+String(s%60).padStart(2,'0')+' ON DESK · '+(window._flips||0)+' FLIPS · NEXT EDITION: №08'},1000);
 // konami → CRT
 const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let ki=0;
 addEventListener('keydown',e=>{ki=(e.key===seq[ki])?ki+1:(e.key===seq[0]?1:0);
@@ -710,15 +721,32 @@ if(deckEl){
               ['COMMON',[['TYPE',89],['CRAFT',93],['VOLUME',61]]],
               ['MIDNIGHT HOLO',[['TYPE',95],['CRAFT',94],['VOLUME',100]]],
               ['ROOKIE 1/1',[['HANDLE',93],['VISION',91],['RANGE',88]]]];
+  // FACE-KIHT: parandab flipi (overflow lamestas 3D); esikülg oma konteinerisse
+  cards.forEach(c=>{const f=document.createElement('div');f.className='face';
+    [...c.children].filter(n=>!n.classList.contains('back')).forEach(n=>f.appendChild(n));
+    c.prepend(f)});
+  const GNOTE=['this one bites. — GL','never came home either. — GL','dawn hits different. — GL','one net. that’s the whole story. — GL','still soft. still gone. — GL','see you at 00:00. — GL','graded it myself. still a 10. — GL'];
+  const FR=['rgba(237,232,223,.5)','rgba(237,232,223,.5)','rgba(17,17,16,.4)','rgba(17,17,16,.4)','rgba(17,17,16,.35)','rgba(237,232,223,.4)',''];
   cards.forEach((c,i)=>{const m=META[i];if(!m)return;
     const bh=c.querySelector('.back .bh');if(bh){const r=document.createElement('span');r.className='rar';r.textContent='★ '+m[0];bh.appendChild(r)}
     const rows=c.querySelector('.back .rows');if(rows){const st=document.createElement('div');st.className='stats';
       st.innerHTML=m[1].map(s=>'<div class="st"><span>'+s[0]+'</span><span class="bar"><i style="width:'+s[1]+'%"></i></span><span class="nm">'+s[1]+'</span></div>').join('');
       rows.after(st)}
-    if(c.id!=='card7'){const p=document.createElement('div');p.className='plate';
-      p.innerHTML='<span class="nm">'+NAMES[i]+'</span><span class="sr">★ '+m[0]+'</span>';c.appendChild(p)}});
+    const bk=c.querySelector('.back');
+    if(bk)bk.insertAdjacentHTML('beforeend',
+      '<div class="stampA">GL© Authentic</div>'+
+      '<svg class="doodle" viewBox="0 0 100 12" preserveAspectRatio="none"><path d="M2 8 C 18 3, 30 11, 46 7 C 62 3, 74 10, 98 5" fill="none" stroke="#FF3B00" stroke-width="2.2" stroke-linecap="round" opacity=".85"/></svg>'+
+      '<div class="gnote">'+GNOTE[i]+'</div>');
+    if(c.id!=='card7'){const f=c.querySelector('.face');
+      if(FR[i]){c.style.setProperty('--fr',FR[i]);
+        const isL=FR[i].indexOf('237')>-1;
+        c.style.setProperty('--frt',isL?'#111110':'#EDE8DF');
+        f.insertAdjacentHTML('beforeend','<div class="cframe"></div><span class="fset">GL© · No.'+String(i+1).padStart(2,'0')+'</span>');
+        if(isL)f.querySelector('.fset').style.cssText='background:#EDE8DF;color:#111110';
+        else f.querySelector('.fset').style.cssText='background:#111110;color:#EDE8DF';}
+      f.insertAdjacentHTML('beforeend','<div class="plate"><span class="nm">'+NAMES[i]+'</span><span class="sr">★ '+m[0]+'</span></div>');}});
   const PACKS={s1:{ids:[1,2,4]},hp:{ids:[0,3,6]},mn:{ids:[5]}};
-  const rots=[0,-2.6,2.1,-1.5,1.3,1.8,1.0];
+  const rots=[0,-1.6,1.2,-1,.8,1.4,.6];
   let order=[],busy=true,dealt=false,curPack=null;
   cards.forEach(c=>{c.classList.add('undealt');c.setAttribute('data-cur','FLIP')});
   const tEl=document.getElementById('dTitle'),iEl=document.getElementById('dIdx'),
@@ -729,7 +757,7 @@ if(deckEl){
     order.forEach((ci,i)=>{const c=cards[ci];
       c.style.zIndex=60-i;
       c.style.setProperty('--r',rots[ci%rots.length]+'deg');
-      c.style.setProperty('--y',(i*12)+'px');
+      c.style.setProperty('--y',(i*8)+'px');
       c.style.setProperty('--s',String(1-i*0.035));
     });
     if(order.length&&curPack){tEl.textContent=cards[order[0]].dataset.t;
@@ -813,11 +841,11 @@ addEventListener('focus',()=>{document.title=t0});
 // email copy flash
 const qm=document.getElementById('qmail');
 if(qm)qm.addEventListener('click',()=>{try{navigator.clipboard.writeText('gerrit@shiftlabstudio.com');const o=qm.textContent;qm.textContent='COPIED ✓';setTimeout(()=>qm.textContent=o,1400)}catch(_){}});
-// easter egg 1: type "ramen"
+// "ramen" — vali mänguasi elab nüüd keldris (masterplan §00: loud lives behind one door)
 let buf='';
 addEventListener('keydown',e=>{
   buf=(buf+e.key.toLowerCase()).slice(-5);
-  if(buf==='ramen'){for(let i=0;i<24;i++){const n=document.createElement('div');n.className='noodle';n.textContent='🍜';n.style.left=Math.random()*100+'vw';n.style.animationDuration=(2+Math.random()*2)+'s';n.style.animationDelay=(Math.random()*0.8)+'s';document.body.appendChild(n);setTimeout(()=>n.remove(),4500)}buf='';}
+  if(buf==='ramen'){console.log('%cwrong room. the rain lives in the basement now → /basement.html','color:#FF3B00');buf='';}
 });
 // easter egg 2: click logo 5x -> capy mode
 let clicks=0;document.getElementById('logoBtn').addEventListener('click',()=>{clicks++;if(clicks>=5){document.body.classList.toggle('capy');clicks=0;}});
